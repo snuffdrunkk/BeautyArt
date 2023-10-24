@@ -5,8 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeautyArt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#EEE8AA" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
-        
+        <Menu Height="25" VerticalAlignment="Top" Background="#877495">
+            <MenuItem Header="Вывод" Background="#877495" Foreground="White"  Margin="0" Height="25">
+                <MenuItem x:Name="BusShow" Background="#877495" Header="Автобусы" Height="25" Margin="0">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Bus" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="TypeOfBusShow" Background="#877495" Header="Типы автобусов" Height="25">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="BusMultiple" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="DriversShow" Background="#877495" Header="Водители" Height="25">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="CardAccountDetailsOutline" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="TicketShow" Background="#877495" Header="Билеты" Height="25">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="TicketConfirmationOutline" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="RouteShow" Background="#877495" Header="Маршрут" Height="25">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Road" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Добавить" Background="#877495" Foreground="White"  Height="25" Margin="0">
+                <MenuItem x:Name="BusAdd" Background="#877495" Header="Автобус" Height="25">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Bus" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="TypeOfBusAdd" Background="#877495" Header="Тип автобуса" Height="25">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="BusMultiple" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="DriversAdd" Background="#877495" Header="Водители" Height="25">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="CardAccountDetailsOutline" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="TicketAdd" Background="#877495" Header="Билеты" Height="25">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="TicketConfirmationOutline" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem x:Name="RouteAdd" Background="#877495" Header="Маршрут" Height="25">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Road" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
     </Grid>
 </Window>
