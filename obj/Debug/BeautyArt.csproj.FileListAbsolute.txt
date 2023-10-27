@@ -32,3 +32,5 @@ D:\Практика\Prog\BeautyArt\obj\Debug\BeautyArt.csproj.CoreCompileInputs.
 D:\Практика\Prog\BeautyArt\obj\Debug\BeautyArt.csproj.CopyComplete
 D:\Практика\Prog\BeautyArt\obj\Debug\BeautyArt.exe
 D:\Практика\Prog\BeautyArt\obj\Debug\BeautyArt.pdb
+D:\Практика\Prog\BeautyArt\obj\Debug\Add\StudentsAdd.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\Add\StudentsAdd.baml

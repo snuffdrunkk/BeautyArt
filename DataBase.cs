@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace BeautyArt
 {
@@ -25,5 +26,23 @@ namespace BeautyArt
             }
         }
 
+        public void Select(string query, DataGrid dataGrid)
+        {
+            Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(query, sqlConnection);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+            dataGrid.ItemsSource = dataTable.DefaultView;
+            Open();
+        }
+
+        public void Update(string query)
+        {
+            if (sqlConnection.State == ConnectionState.Closed)
+                Open();
+            SqlCommand command = new SqlCommand(query, sqlConnection);
+            command.ExecuteNonQuery();
+            Open();
+        }
     }
 }

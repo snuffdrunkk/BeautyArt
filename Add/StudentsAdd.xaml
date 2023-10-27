@@ -1,0 +1,92 @@
+﻿<Window x:Class="BeautyArt.Add.StudentsAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeautyArt.Add"
+        mc:Ignorable="d"
+        Title="" Height="400" Width="323"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#EEE8AA" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Border 
+            BorderBrush="White"
+            BorderThickness="10"
+            Background="White"
+            HorizontalAlignment="Left"
+            Margin="30,10,30,10"
+            Width="250"
+            CornerRadius="25">
+            <StackPanel>
+                <TextBox
+                    x:Name="TextBoxNameStud"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Имя студента"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 0, 0, 3" Height="34" />
+
+                <TextBox
+                    x:Name="TextBoxSurnameStud"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Фамилия студента"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 0, 0, 3" Height="34" />
+
+                <TextBox
+                    x:Name="TextBoxMiddlenameStud"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Отчество студента"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 0, 0, 3" Height="34" />
+
+                <TextBox
+                    x:Name="TextBoxEmail"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Email студента"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 0, 0, 3" Height="34" />
+
+                <TextBox
+                    x:Name="TextBoxNumberStud"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Номер телефона студента"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 0, 0, 3" Height="34" />
+
+                <TextBox
+                    x:Name="TextBoxPassport"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Паспортные данные студента"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 0, 0, 33" Height="34" />
+
+
+                <Button
+                    Content="Добавить"
+                    x:Name="AddButton"
+                    Background="#877495"
+                    BorderBrush="#877495"
+                    BorderThickness="1"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Margin="0, 0, 0, 5"  
+                    Click="AddButton_Click" />
+
+                <Button
+                    Content="Закрыть"
+                    x:Name="CloseButton"
+                    Background="#877495"
+                    BorderBrush="#877495"
+                    BorderThickness="1"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Margin="0, 0, 0, 0" 
+                    Click="CloseButton_Click" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -21,59 +21,169 @@
     <Grid>
         <Menu Height="25" VerticalAlignment="Top" Background="#877495">
             <MenuItem Header="Вывод" Background="#877495" Foreground="White"  Margin="0" Height="25">
-                <MenuItem x:Name="BusShow" Background="#877495" Header="Автобусы" Height="25" Margin="0">
+                <MenuItem x:Name="StudentsShow" Background="#877495" Header="Студентов" Height="25" Margin="0" Click="StudnetsShow_Click">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Bus" />
+                        <materialDesign:PackIcon Kind="AccountSchool" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="TypeOfBusShow" Background="#877495" Header="Типы автобусов" Height="25">
+                <MenuItem x:Name="TeachersShow" Background="#877495" Header="Преподавателей" Height="25" Click="TeachersShow_Click">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="BusMultiple" />
+                        <materialDesign:PackIcon Kind="HumanMaleBoard" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="DriversShow" Background="#877495" Header="Водители" Height="25">
+                <MenuItem x:Name="TypeOfCoursesShow" Background="#877495" Header="Видов курсов" Height="25" Click="TypeOfCoursesShow_Click">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="CardAccountDetailsOutline" />
+                        <materialDesign:PackIcon Kind="BookOpenPageVariantOutline" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="TicketShow" Background="#877495" Header="Билеты" Height="25">
+                <MenuItem x:Name="CoursesShow" Background="#877495" Header="Курсов и Составов" Height="25" Click="CoursesShow_Click">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="TicketConfirmationOutline" />
+                        <materialDesign:PackIcon Kind="BookSettings" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="RouteShow" Background="#877495" Header="Маршрут" Height="25">
+                <MenuItem x:Name="SchedulesShow" Background="#877495" Header="Расписания" Height="25" Click="ScheduleShow_Click">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Road" />
+                        <materialDesign:PackIcon Kind="CalendarMonthOutline" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Добавить" Background="#877495" Foreground="White"  Height="25" Margin="0">
-                <MenuItem x:Name="BusAdd" Background="#877495" Header="Автобус" Height="25">
+                <MenuItem x:Name="StudentsAdd" Background="#877495" Header="Студента" Height="25" Click="StudentsAdd_Click">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Bus" />
+                        <materialDesign:PackIcon Kind="AccountSchool" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="TypeOfBusAdd" Background="#877495" Header="Тип автобуса" Height="25">
+                <MenuItem x:Name="TeachersAdd" Background="#877495" Header="Преподавателя" Height="25">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="BusMultiple" />
+                        <materialDesign:PackIcon Kind="HumanMaleBoard" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="DriversAdd" Background="#877495" Header="Водители" Height="25">
+                <MenuItem x:Name="TypeOfCoursesAdd" Background="#877495" Header="Вид курса" Height="25">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="CardAccountDetailsOutline" />
+                        <materialDesign:PackIcon Kind="BookOpenPageVariantOutline" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="TicketAdd" Background="#877495" Header="Билеты" Height="25">
+                <MenuItem x:Name="CoursesAdd" Background="#877495" Header="Курсы и состав" Height="25">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="TicketConfirmationOutline" />
+                        <materialDesign:PackIcon Kind="BookSettings" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="RouteAdd" Background="#877495" Header="Маршрут" Height="25">
+                <MenuItem x:Name="ScheduleAdd" Background="#877495" Header="Расписание" Height="25">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Road" />
+                        <materialDesign:PackIcon Kind="CalendarMonthOutline" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
         </Menu>
+
+        <DataGrid  
+            Background="White"
+            x:Name="StudentsGrid"
+            IsReadOnly="True"
+            Margin="20,40,20,20"
+            Visibility="Hidden">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem                        
+                        x:Name="DeleteStudents" 
+                        Header="Удалить" 
+                        Height="25" >
+                    </MenuItem>
+                    <MenuItem                        
+                        x:Name="EditStudents" 
+                        Header="Редактировать" 
+                        Height="25" >
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <DataGrid 
+            Background="White"
+            x:Name="TeachersGrid"
+            IsReadOnly="True"
+            Margin="20,40,20,20"
+            Visibility="Hidden">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem                        
+                        x:Name="DeleteTeachers" 
+                        Header="Удалить" 
+                        Height="25" >
+                    </MenuItem>
+                    <MenuItem                        
+                        x:Name="EditTeachers" 
+                        Header="Редактировать" 
+                        Height="25" >
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <DataGrid 
+            Background="White"
+            x:Name="TypeOfCoursesGrid"
+            IsReadOnly="True"
+            Margin="20,40,20,20"
+            Visibility="Hidden">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem                        
+                        x:Name="DeleteTypeOfCourses" 
+                        Header="Удалить" 
+                        Height="25" >
+                    </MenuItem>
+                    <MenuItem                        
+                        x:Name="EditTypeOfCourses" 
+                        Header="Редактировать" 
+                        Height="25" >
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <DataGrid 
+            Background="White"
+            x:Name="CoursesGrid"
+            IsReadOnly="True"
+            Margin="20,40,20,20"
+            Visibility="Hidden">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem                        
+                        x:Name="DeleteCourses" 
+                        Header="Удалить" 
+                        Height="25" >
+                    </MenuItem>
+                    <MenuItem                        
+                        x:Name="EditCourses" 
+                        Header="Редактировать" 
+                        Height="25" >
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <DataGrid 
+            Background="White"
+            x:Name="ScheduleGrid"
+            IsReadOnly="True"
+            Margin="20,40,20,20"
+            Visibility="Hidden">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem                        
+                        x:Name="DeleteSchedule" 
+                        Header="Удалить" 
+                        Height="25" >
+                    </MenuItem>
+                    <MenuItem                        
+                        x:Name="EditSchedule" 
+                        Header="Редактировать" 
+                        Height="25" >
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
     </Grid>
 </Window>
