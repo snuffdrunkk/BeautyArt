@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControlzEx.Standard;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,6 @@ namespace BeautyArt.Add
     public partial class StudentsAdd : Window
     {
         DataBase db;
-
         public StudentsAdd()
         {
             InitializeComponent();
@@ -71,16 +71,18 @@ namespace BeautyArt.Add
             }
 
             // Проверка номера телефона
+            string patternNum = @"^\+\d{12}$";
             string phoneNumber = TextBoxNumberStud.Text.Trim();
-            if (string.IsNullOrEmpty(phoneNumber) || !phoneNumber.All(char.IsDigit) || phoneNumber.Length != 12)
+            if (string.IsNullOrEmpty(phoneNumber) || Regex.IsMatch(TextBoxNumberStud.Text, patternNum))
             {
                 MessageBox.Show("Пожалуйста, введите корректный номер телефона (только 12 цифр).", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             // Проверка паспортных данных
+            string patternPass = @"^HB\d{7}$";
             string passport = TextBoxPassport.Text.Trim();
-            if (string.IsNullOrEmpty(passport) || !passport.All(char.IsDigit) || passport.Length != 7)
+            if (!Regex.IsMatch(TextBoxPassport.Text, patternPass))
             {
                 MessageBox.Show("Пожалуйста, введите корректные паспортные данные (только 7 цифр).", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;

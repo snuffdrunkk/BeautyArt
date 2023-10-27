@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace BeautyArt
@@ -43,6 +38,11 @@ namespace BeautyArt
             SqlCommand command = new SqlCommand(query, sqlConnection);
             command.ExecuteNonQuery();
             Open();
+        }
+
+        public void ReadStudent(DataGrid dataGrid)
+        {
+            Select("select Students.IdStudent, Students.NameStud, Students.SurnameStud, Students.MiddlenameStud, Students.EmailStud, Students.NumberStud, Students.PassportData From Students", dataGrid);
         }
     }
 }

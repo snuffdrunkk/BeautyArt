@@ -53,7 +53,7 @@
                         <materialDesign:PackIcon Kind="AccountSchool" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="TeachersAdd" Background="#877495" Header="Преподавателя" Height="25">
+                <MenuItem x:Name="TeachersAdd" Background="#877495" Header="Преподавателя" Height="25" Click="TeachersAdd_Click">
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="HumanMaleBoard" />
                     </MenuItem.Icon>
@@ -75,29 +75,28 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-
         <DataGrid  
             Background="White"
             x:Name="StudentsGrid"
             IsReadOnly="True"
             Margin="20,40,20,20"
-            Visibility="Hidden">
+            Visibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ProductId" Binding="{Binding IdStudent}" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding NameStud}"/>
+                <DataGridTextColumn Header="Фамилия" Width="*" Binding="{Binding SurnameStud}"/>
+                <DataGridTextColumn Header="Отчество" Width="*" Binding="{Binding MiddlenameStud}"/>
+                <DataGridTextColumn Header="Должность" Width="*" Binding="{Binding EmailStud}"/>
+                <DataGridTextColumn Header="Номер телефона" Width="*" Binding="{Binding NumberStud}"/>
+                <DataGridTextColumn Header="Паспортные данные" Width="*" Binding="{Binding PassportData}"/>
+            </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem                        
-                        x:Name="DeleteStudents" 
-                        Header="Удалить" 
-                        Height="25" >
-                    </MenuItem>
-                    <MenuItem                        
-                        x:Name="EditStudents" 
-                        Header="Редактировать" 
-                        Height="25" >
-                    </MenuItem>
+                    <MenuItem x:Name="DeleteStudents" Header="Добавить" Click="StudentsAdd_Click"/>
+                    <MenuItem x:Name="EditStudents" Header="Редактировать"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-
         <DataGrid 
             Background="White"
             x:Name="TeachersGrid"

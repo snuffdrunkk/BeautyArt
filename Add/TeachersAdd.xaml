@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeautyArt.Add"
         mc:Ignorable="d"
-        Title="TeachersAdd" Height="400" Width="323"
+        Title="TeachersAdd" Height="410" Width="323"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -50,7 +50,7 @@
                     x:Name="ComboBoxPosition"
                     materialDesign:HintAssist.Hint="Должность преподвателя"
                     Margin="0, 0, 0, 3"
-                    VerticalAlignment="Top" SelectionChanged="ComboBoxPosition_SelectionChanged">
+                    VerticalAlignment="Top">
                     <ComboBoxItem Content="Парикмахер"/>
                     <ComboBoxItem Content="Косметолог"/>
                     <ComboBoxItem Content="Визажист"/>
