@@ -16,16 +16,15 @@ using System.Windows.Shapes;
 
 namespace BeautyArt.Add
 {
-    /// <summary>
-    /// Логика взаимодействия для StudentsAdd.xaml
-    /// </summary>
     public partial class StudentsAdd : Window
     {
         DataBase db;
-        public StudentsAdd()
+        DataGrid dataGrid;
+        public StudentsAdd(DataGrid dataGrid)
         {
             InitializeComponent();
             db = new DataBase();
+            this.dataGrid = dataGrid;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -34,6 +33,7 @@ namespace BeautyArt.Add
             {
                 db.Update($"Insert INTO Students (NameStud, SurnameStud, MiddlenameStud, EmailStud, NumberStud, PassportData) VALUES (N'{TextBoxNameStud.Text}', N'{TextBoxSurnameStud.Text}', N'{TextBoxMiddlenameStud.Text}', N'{TextBoxEmail.Text}', N'{TextBoxNumberStud.Text}', N'{TextBoxPassport.Text}')");
             }
+            db.ReadStudent(dataGrid);
         }
 
             private bool ValidateInput()

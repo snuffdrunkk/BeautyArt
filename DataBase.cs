@@ -44,5 +44,20 @@ namespace BeautyArt
         {
             Select("select Students.IdStudent, Students.NameStud, Students.SurnameStud, Students.MiddlenameStud, Students.EmailStud, Students.NumberStud, Students.PassportData From Students", dataGrid);
         }
+
+        public void ReadTeachers(DataGrid dataGrid)
+        {
+            Select("select Teachers.IdTeacher, Teachers.NameTeach, Teachers.SurnameTeach, Teachers.MiddlenameTeach, Teachers.Position, Teachers.NumberTeach From Teachers", dataGrid);
+        }
+
+        public void ReadTypeOfCourse(DataGrid dataGrid)
+        {
+            Select("select TypeOfCourse.IdTypeOfCourse, TypeOfCourse.TitleCourse, TypeOfCourse.MinMember, TypeOfCourse.MaxMember, TypeOfCourse.CostCourse, TypeOfCourse.Duration From TypeOfCourse", dataGrid);
+        }
+
+        public void ReadCourse(DataGrid dataGrid)
+        {
+            Select("select Courses.IdCourse, TypeOfCourse.TitleCourse, Teachers.SurnameTeach,  Courses.DateStart, Courses.DateEnd, Courses.CountStud From Courses, Teachers, TypeOfCourse Where Courses.IdTypeOfCourse = TypeOfCourse.IdTypeOfCourse And Courses.IdTeacher = Teachers.IdTeacher", dataGrid);
+        }
     }
 }

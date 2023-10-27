@@ -13,77 +13,29 @@ namespace BeautyArt
             db = new DataBase();
         }
 
-        private void StudentsGridUpdate()
+        private void StudentsGridUpdate()//Обновление грида учеников
         {
             db.ReadStudent(StudentsGrid);
         }
 
         private void TeachersGridUpdate()//Обновление грида учителей
         {
-            db.Select("select Teachers.IdTeacher, Teachers.NameTeach, Teachers.SurnameTeach, Teachers.MiddlenameTeach, Teachers.Position, Teachers.NumberTeach From Teachers", TeachersGrid);
-            TeachersGrid.Columns[0].Visibility = Visibility.Hidden;
-            TeachersGrid.Columns[1].Header = "Имя";
-            TeachersGrid.Columns[1].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            TeachersGrid.Columns[2].Header = "Фамилия";
-            TeachersGrid.Columns[2].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            TeachersGrid.Columns[3].Header = "Отчество";
-            TeachersGrid.Columns[3].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            TeachersGrid.Columns[4].Header = "Должность";
-            TeachersGrid.Columns[4].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            TeachersGrid.Columns[5].Header = "Номер телефона";
-            TeachersGrid.Columns[5].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
+            db.ReadTeachers(TeachersGrid);
         }
 
         private void TypeOfCourseGridUpdate()//Обновление грида видов курсов
         {
-            db.Select("select TypeOfCourse.IdTypeOfCourse, TypeOfCourse.TitleCourse, TypeOfCourse.MinMember, TypeOfCourse.MaxMember, TypeOfCourse.CostCourse, TypeOfCourse.Duration From TypeOfCourse", TypeOfCoursesGrid);
-            TypeOfCoursesGrid.Columns[0].Visibility = Visibility.Hidden;
-            TypeOfCoursesGrid.Columns[1].Header = "Наименование";
-            TypeOfCoursesGrid.Columns[1].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            TypeOfCoursesGrid.Columns[2].Header = "Минимум человек";
-            TypeOfCoursesGrid.Columns[2].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            TypeOfCoursesGrid.Columns[3].Header = "Максимум человек";
-            TypeOfCoursesGrid.Columns[3].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            TypeOfCoursesGrid.Columns[4].Header = "Стоимость";
-            TypeOfCoursesGrid.Columns[4].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            TypeOfCoursesGrid.Columns[5].Header = "Продолжительность";
-            TypeOfCoursesGrid.Columns[5].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
+            db.ReadTypeOfCourse(TypeOfCoursesGrid);
         }
 
         private void CoursesGridUpdate()//Обновление грида курсов
         {
-            db.Select("select Courses.IdCourse, Teachers.IdTeacher, TypeOfCourse.IdTypeOfCourse, Courses.DateStart, Courses.DateEnd, Courses.CountStud From Courses, Teachers, TypeOfCourse Where Courses.IdTeacher = Teachers.IdTeacher And Courses.IdTypeOfCourse = TypeOfCourse.IdTypeOfCourse", CoursesGrid);
-            CoursesGrid.Columns[0].Visibility = Visibility.Hidden;
-            CoursesGrid.Columns[1].Header = "Наименование";
-            CoursesGrid.Columns[1].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            CoursesGrid.Columns[2].Header = "Учитель";
-            CoursesGrid.Columns[2].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            CoursesGrid.Columns[3].Header = "Дата начала";
-            CoursesGrid.Columns[3].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            CoursesGrid.Columns[4].Header = "Дата окончания";
-            CoursesGrid.Columns[4].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            CoursesGrid.Columns[5].Header = "Количество учеников";
-            CoursesGrid.Columns[5].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
+            db.ReadCourse(CoursesGrid);
         }
 
         private void ScheduleGridUpdate()//Обновление грида расписание
         {
             db.Select("select Schedules.IdSchedule, Courses.IdCourse, Students.IdStudent, Teachers.IdTeacher, Schedules.Type, Schedules.Date, Schedules.Time, Schedules.Cabinet From Schedules, Courses, Teachers, Students Where Schedules.IdCourse = Courses.IdCourse And Schedules.IdStudent = Students.IdStudent And Schedules.IdTeacher = Teachers.IdTeacher", ScheduleGrid);
-            ScheduleGrid.Columns[0].Visibility = Visibility.Hidden;
-            ScheduleGrid.Columns[1].Header = "Наименование";
-            ScheduleGrid.Columns[1].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            ScheduleGrid.Columns[2].Header = "Ученик";
-            ScheduleGrid.Columns[2].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            ScheduleGrid.Columns[3].Header = "Учитель";
-            ScheduleGrid.Columns[3].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            ScheduleGrid.Columns[4].Header = "Тип занятия";
-            ScheduleGrid.Columns[4].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            ScheduleGrid.Columns[5].Header = "Дата";
-            ScheduleGrid.Columns[5].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            ScheduleGrid.Columns[6].Header = "Время";
-            ScheduleGrid.Columns[6].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            ScheduleGrid.Columns[7].Header = "Кабинет";
-            ScheduleGrid.Columns[7].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
         }
 
         private void StudnetsShow_Click(object sender, RoutedEventArgs e)//Вывод студентов
@@ -197,7 +149,7 @@ namespace BeautyArt
 
         private void StudentsAdd_Click(object sender, RoutedEventArgs e)//Добавление учеников
         {
-            StudentsAdd studentsAdd = new StudentsAdd();
+            StudentsAdd studentsAdd = new StudentsAdd(StudentsGrid);
             studentsAdd.ShowDialog();
             StudentsGridUpdate();
         }
