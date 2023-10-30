@@ -58,7 +58,7 @@
                         <materialDesign:PackIcon Kind="HumanMaleBoard" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="TypeOfCoursesAdd" Background="#877495" Header="Вид курса" Height="25">
+                <MenuItem x:Name="TypeOfCoursesAdd" Background="#877495" Header="Вид курса" Height="25" Click="TypeOfCoursesAdd_Click">
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="BookOpenPageVariantOutline" />
                     </MenuItem.Icon>
@@ -82,7 +82,7 @@
             Margin="20,40,20,20"
             Visibility="Hidden">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ProductId" Binding="{Binding IdStudent}" Visibility="Hidden"/>
+                <DataGridTextColumn Header="IdStudent" Binding="{Binding IdStudent}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding NameStud}"/>
                 <DataGridTextColumn Header="Фамилия" Width="*" Binding="{Binding SurnameStud}"/>
                 <DataGridTextColumn Header="Отчество" Width="*" Binding="{Binding MiddlenameStud}"/>
@@ -172,7 +172,6 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdSchedule" Binding="{Binding IdSchedule}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Наименование" Width="*" Binding="{Binding TitleCourse}"/>
-                <DataGridTextColumn Header="Cтудент" Width="*" Binding="{Binding TitleCourse}"/>
                 <DataGridTextColumn Header="Учитель" Width="*" Binding="{Binding SurnameTeach}"/>
                 <DataGridTextColumn Header="Тип занятия" Width="*" Binding="{Binding Type}"/>
                 <DataGridTextColumn Header="Дата" Width="*" Binding="{Binding Date}"/>
@@ -183,6 +182,25 @@
                 <ContextMenu>
                     <MenuItem x:Name="DeleteSchedule" Header="Удалить" Height="25" />
                     <MenuItem x:Name="EditSchedule" Header="Редактировать" Height="25" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <DataGrid 
+            Background="White"
+            x:Name="CompositionsGrid"
+            IsReadOnly="True"
+            Margin="20,40,20,20"
+            Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="IdCourseComposition" Binding="{Binding IdCourseComposition}" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Студент" Width="*" Binding="{Binding SurnameStud}"/>
+                <DataGridTextColumn Header="Наименование курса" Width="*" Binding="{Binding TitleCourse}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="DeleteCompositions" Header="Удалить" Height="25" />
+                    <MenuItem x:Name="EditCompositions" Header="Редактировать" Height="25" />
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

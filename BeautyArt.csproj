@@ -87,6 +87,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Add\TypeOfCourseAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -96,6 +100,9 @@
     </Compile>
     <Compile Include="Add\TeachersAdd.xaml.cs">
       <DependentUpon>TeachersAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Add\TypeOfCourseAdd.xaml.cs">
+      <DependentUpon>TypeOfCourseAdd.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

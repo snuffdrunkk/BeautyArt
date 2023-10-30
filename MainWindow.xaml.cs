@@ -35,7 +35,12 @@ namespace BeautyArt
 
         private void ScheduleGridUpdate()//Обновление грида расписание
         {
-            db.Select("select Schedules.IdSchedule, Courses.IdCourse, Students.IdStudent, Teachers.IdTeacher, Schedules.Type, Schedules.Date, Schedules.Time, Schedules.Cabinet From Schedules, Courses, Teachers, Students Where Schedules.IdCourse = Courses.IdCourse And Schedules.IdStudent = Students.IdStudent And Schedules.IdTeacher = Teachers.IdTeacher", ScheduleGrid);
+            db.ReadSchedule(CoursesGrid);
+        }
+
+        private void CompositionsGridUpdate()//Обновление грида расписание
+        {
+            //db.Select("select Compositions.IdCourseComposition, Students.IdStudnet, Students.IdStudent, Teachers.IdTeacher, Schedules.Type, Schedules.Date, Schedules.Time, Schedules.Cabinet From Schedules, Courses, Teachers, Students Where Schedules.IdCourse = Courses.IdCourse And Schedules.IdStudent = Students.IdStudent And Schedules.IdTeacher = Teachers.IdTeacher", ScheduleGrid);
         }
 
         private void StudnetsShow_Click(object sender, RoutedEventArgs e)//Вывод студентов
@@ -154,11 +159,18 @@ namespace BeautyArt
             StudentsGridUpdate();
         }
 
-        private void TeachersAdd_Click(object sender, RoutedEventArgs e)
+        private void TeachersAdd_Click(object sender, RoutedEventArgs e)//Добавление учителей   
         {
             TeachersAdd teatersAdd = new TeachersAdd(TeachersGrid);
             teatersAdd.ShowDialog();
             TeachersGridUpdate();
+        }
+
+        private void TypeOfCoursesAdd_Click(object sender, RoutedEventArgs e)//Добавление типа курса
+        {
+            TypeOfCourseAdd typeOfCourseAdd = new TypeOfCourseAdd(TypeOfCoursesGrid);
+            typeOfCourseAdd.ShowDialog();
+            TypeOfCourseGridUpdate();
         }
     }
 }

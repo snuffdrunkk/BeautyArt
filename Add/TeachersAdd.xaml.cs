@@ -28,7 +28,6 @@ namespace BeautyArt.Add
         {
             if (ValidateInput())
             {
-                MessageBox.Show("Прошли проверки");
                 db.Update($"Insert INTO Teachers (NameTeach, SurnameTeach, MiddlenameTeach, Position, NumberTeach) VALUES (N'{TextBoxNameTeach.Text}', N'{TextBoxSurnameTeach.Text}', N'{TextBoxMiddlenameTeach.Text}', N'{ComboBoxPosition.Text}', N'{TextBoxNumberTeach.Text}')");
             }
             db.ReadTeachers(dataGrid);
