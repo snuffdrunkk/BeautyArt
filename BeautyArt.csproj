@@ -79,6 +79,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Add\CoursesAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Add\SchedulesAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Add\StudentsAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,10 +99,36 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Edit\CoursesEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit\SchedulesEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit\StudentsEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit\TeachersEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit\TypeOfCourseEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Add\CoursesAdd.xaml.cs">
+      <DependentUpon>CoursesAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Add\SchedulesAdd.xaml.cs">
+      <DependentUpon>SchedulesAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Add\StudentsAdd.xaml.cs">
       <DependentUpon>StudentsAdd.xaml</DependentUpon>
     </Compile>
@@ -108,7 +142,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ComboBoxDTO.cs" />
     <Compile Include="DataBase.cs" />
+    <Compile Include="Edit\CoursesEdit.xaml.cs">
+      <DependentUpon>CoursesEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\SchedulesEdit.xaml.cs">
+      <DependentUpon>SchedulesEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\StudentsEdit.xaml.cs">
+      <DependentUpon>StudentsEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\TeachersEdit.xaml.cs">
+      <DependentUpon>TeachersEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Edit\TypeOfCourseEdit.xaml.cs">
+      <DependentUpon>TypeOfCourseEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -141,6 +191,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.5.0.0-ci368\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.5.0.0-ci368\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

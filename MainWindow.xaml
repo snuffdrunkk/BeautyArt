@@ -63,23 +63,137 @@
                         <materialDesign:PackIcon Kind="BookOpenPageVariantOutline" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="CoursesAdd" Background="#877495" Header="Курсы и состав" Height="25">
+                <MenuItem x:Name="CoursesAdd" Background="#877495" Header="Курсы и состав" Height="25" Click="CoursesAdd_Click">
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="BookSettings" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="ScheduleAdd" Background="#877495" Header="Расписание" Height="25">
+                <MenuItem x:Name="ScheduleAdd" Background="#877495" Header="Расписание" Height="25" Click="ScheduleAdd_Click">
                     <MenuItem.Icon>
                         <materialDesign:PackIcon Kind="CalendarMonthOutline" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
         </Menu>
+        
+        <TextBox
+            x:Name="FilterStudentsBox"
+            Background="White"
+            Visibility="Hidden"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Фильтрация учеников"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="21,35,440,0" 
+            Height="35" 
+            TextChanged="FilterStudentsBox_TextChanged"/>
+
+        <TextBox
+            x:Name="FilterTeachersBox"
+            Background="White"
+            Visibility="Hidden"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Фильтрация преподавателей"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="21,35,440,0" 
+            Height="35" 
+            TextChanged="FilterTeachersBox_TextChanged"/>
+
+        <TextBox
+            x:Name="FilterTypeOfCoursesBox"
+            Background="White"
+            Visibility="Hidden"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Фильтрация видов курсов"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="21,35,440,0" 
+            Height="35" 
+            TextChanged="FilterTypeOfCoursesBox_TextChanged"/>
+
+        <TextBox
+            x:Name="FilterCoursesBox"
+            Background="White"
+            Visibility="Hidden"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Фильтрация курсов"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="21,35,440,0" 
+            Height="35"
+            TextChanged="FilterCoursesBox_TextChanged"/>
+
+        <TextBox
+            x:Name="FilterScheduleBox"
+            Background="White"
+            Visibility="Hidden"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Фильтрация расписания"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="21,35,440,0" 
+            Height="35" 
+            TextChanged="FilterScheduleBox_TextChanged"/>
+
+        <TextBox
+            x:Name="SearchStudentsBox"
+            Background="White"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Поиск учеников"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="440,35,21,0" 
+            Height="35" 
+            Visibility="Hidden"
+            TextChanged="SearchStudentsBox_TextChanged"/>
+
+        <TextBox
+            x:Name="SearchTeachersBox"
+            Background="White"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Поиск преподавателей"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="440,35,21,0" 
+            Height="35" 
+            Visibility="Hidden"
+            TextChanged="SearchTeachersBox_TextChanged"/>
+
+        <TextBox
+            x:Name="SearchTypeOfCourseBox"
+            Background="White"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Поиск видов курса"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="440,35,21,0" 
+            Height="35" 
+            Visibility="Hidden"
+            TextChanged="SearchTypeOfCourseBox_TextChanged"/>
+
+        <TextBox
+            x:Name="SearchCoursesBox"
+            Background="White"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Поиск курса"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="440,35,21,0" 
+            Height="35" 
+            Visibility="Hidden"
+            TextChanged="SearchCoursesBox_TextChanged"/>
+
+        <TextBox
+            x:Name="SearchScheduleBox"
+            Background="White"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Поиск расписания"
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Margin="440,35,21,0" 
+            Height="35" 
+            Visibility="Hidden"
+            TextChanged="SearchScheduleBox_TextChanged"/>
+
         <DataGrid  
             Background="White"
             x:Name="StudentsGrid"
             IsReadOnly="True"
-            Margin="20,40,20,20"
+            AutoGenerateColumns="false"
+            Margin="20,75,20,20"
+            Width="750"
+            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdStudent" Binding="{Binding IdStudent}" Visibility="Hidden"/>
@@ -92,16 +206,20 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="DeleteStudents" Header="Удалить"/>
-                    <MenuItem x:Name="EditStudents" Header="Редактировать"/>
+                    <MenuItem x:Name="DeleteStudents" Header="Удалить" Click="DeleteStudents_Click"/>
+                    <MenuItem x:Name="EditStudents" Header="Редактировать" Click="EditStudents_Click"/>
+                    <MenuItem x:Name="ReturnStudents" Header="Отменить" Click="ReturnStudents_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
         <DataGrid 
             Background="White"
             x:Name="TeachersGrid"
+            AutoGenerateColumns="false"
             IsReadOnly="True"
-            Margin="20,40,20,20"
+            Margin="20,75,20,20"
+            Width="750"
+            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdTeacher" Binding="{Binding IdTeacher}" Visibility="Hidden"/>
@@ -113,8 +231,9 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="DeleteTeachers" Header="Удалить" Height="25" />
-                    <MenuItem x:Name="EditTeachers" Header="Редактировать" Height="25" />
+                    <MenuItem x:Name="DeleteTeachers" Header="Удалить" Height="25" Click="DeleteTeachers_Click"/>
+                    <MenuItem x:Name="EditTeachers" Header="Редактировать" Height="25" Click="EditTeachers_Click"/>
+                    <MenuItem x:Name="ReturnTeachers" Header="Отменить" Height="25" Click="ReturnTeachers_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
@@ -122,8 +241,11 @@
         <DataGrid 
             Background="White"
             x:Name="TypeOfCoursesGrid"
+            AutoGenerateColumns="false"
             IsReadOnly="True"
-            Margin="20,40,20,20"
+            Margin="20,75,20,20"
+            Width="750"
+            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdTypeOfCourse" Binding="{Binding IdTypeOfCourse}" Visibility="Hidden"/>
@@ -135,8 +257,9 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="DeleteTypeOfCourses" Header="Удалить" Height="25" />
-                    <MenuItem x:Name="EditTypeOfCourses" Header="Редактировать" Height="25" />
+                    <MenuItem x:Name="DeleteTypeOfCourses" Header="Удалить" Height="25" Click="DeleteTypeOfCourses_Click"/>
+                    <MenuItem x:Name="EditTypeOfCourses" Header="Редактировать" Height="25" Click="EditTypeOfCourses_Click"/>
+                    <MenuItem x:Name="ReturnTypeOfCourses" Header="Отменить" Height="25" Click="ReturnTypeOfCourses_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
@@ -144,21 +267,24 @@
         <DataGrid 
             Background="White"
             x:Name="CoursesGrid"
+            AutoGenerateColumns="false"
             IsReadOnly="True"
-            Margin="20,40,20,20"
+            Margin="20,75,20,20"
+            Width="750"
+            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdCourse" Binding="{Binding IdCourse}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Наименование" Width="*" Binding="{Binding TitleCourse}"/>
                 <DataGridTextColumn Header="Учитель" Width="*" Binding="{Binding SurnameTeach}"/>
-                <DataGridTextColumn Header="Дата начала" Width="*" Binding="{Binding DateStart}"/>
-                <DataGridTextColumn Header="Дата окончания" Width="*" Binding="{Binding DateEnd}"/>
+                <DataGridTextColumn Header="Дата начала" Width="*" Binding="{Binding DateStart, StringFormat=dd.MM.yyyy}"/>
                 <DataGridTextColumn Header="Количество учеников" Width="*" Binding="{Binding CountStud}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="DeleteCourses" Header="Удалить" Height="25" />
-                    <MenuItem x:Name="EditCourses" Header="Редактировать" Height="25" />
+                    <MenuItem x:Name="DeleteCourses" Header="Удалить" Height="25" Click="DeleteCourses_Click"/>
+                    <MenuItem x:Name="EditCourses" Header="Редактировать" Height="25" Click="EditCourses_Click"/>
+                    <MenuItem x:Name="ReturnCourses" Header="Отменить" Height="25" Click="ReturnCourses_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
@@ -166,22 +292,26 @@
         <DataGrid 
             Background="White"
             x:Name="ScheduleGrid"
+            AutoGenerateColumns="false"
             IsReadOnly="True"
-            Margin="20,40,20,20"
+            Margin="20,75,20,20"
+            Width="750"
+            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdSchedule" Binding="{Binding IdSchedule}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Наименование" Width="*" Binding="{Binding TitleCourse}"/>
                 <DataGridTextColumn Header="Учитель" Width="*" Binding="{Binding SurnameTeach}"/>
                 <DataGridTextColumn Header="Тип занятия" Width="*" Binding="{Binding Type}"/>
-                <DataGridTextColumn Header="Дата" Width="*" Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Дата" Width="*" Binding="{Binding Date, StringFormat=dd.MM.yyyy}"/>
                 <DataGridTextColumn Header="Время" Width="*" Binding="{Binding Time}"/>
                 <DataGridTextColumn Header="Кабинет" Width="*" Binding="{Binding Cabinet}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="DeleteSchedule" Header="Удалить" Height="25" />
-                    <MenuItem x:Name="EditSchedule" Header="Редактировать" Height="25" />
+                    <MenuItem x:Name="DeleteSchedule" Header="Удалить" Height="25" Click="DeleteSchedule_Click"/>
+                    <MenuItem x:Name="EditSchedule" Header="Редактировать" Height="25" Click="EditSchedule_Click"/>
+                    <MenuItem x:Name="ReturnSchedule" Header="Отменить" Height="25" Click="ReturnSchedule_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
@@ -189,8 +319,11 @@
         <DataGrid 
             Background="White"
             x:Name="CompositionsGrid"
+            AutoGenerateColumns="false"
             IsReadOnly="True"
-            Margin="20,40,20,20"
+            Margin="20,75,20,20"
+            Width="750"
+            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdCourseComposition" Binding="{Binding IdCourseComposition}" Visibility="Hidden"/>
@@ -199,7 +332,7 @@
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="DeleteCompositions" Header="Удалить" Height="25" />
+                    <MenuItem x:Name="DeleteCompositions" Header="Удалить" Height="25" Click="DeleteCompositions_Click"/>
                     <MenuItem x:Name="EditCompositions" Header="Редактировать" Height="25" />
                 </ContextMenu>
             </DataGrid.ContextMenu>

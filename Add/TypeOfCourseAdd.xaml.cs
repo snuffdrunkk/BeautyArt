@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BeautyArt.Add
 {
@@ -28,7 +17,10 @@ namespace BeautyArt.Add
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            db.Update($"Insert INTO TypeOfCourse (TitleCourse, MinMember, MaxMember, CostCourse, Duration) VALUES (N'{TextBoxTitleCourse.Text}', N'{ComboBoxMin.Text}', N'{ComboBoxMax.Text}', N'{TextBoxCost.Text}', N'{TextBoxDuration.Text}')");
+            if (ValidateInput())
+            {
+                db.Update($"Insert INTO TypeOfCourse (TitleCourse, MinMember, MaxMember, CostCourse, Duration) VALUES (N'{TextBoxTitleCourse.Text}', N'{ComboBoxMin.Text}', N'{ComboBoxMax.Text}', N'{TextBoxCost.Text}', N'{TextBoxDuration.Text}')");
+            }
             db.ReadTypeOfCourse(dataGrid);
         }
 
@@ -41,9 +33,9 @@ namespace BeautyArt.Add
         {
             // Проверка наименования курса
             string title = TextBoxTitleCourse.Text.Trim();
-            if (string.IsNullOrEmpty(title))
+            if (string.IsNullOrEmpty(title) || title.Any(char.IsDigit))
             {
-                MessageBox.Show("Пожалуйста, введите наименование курса.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Пожалуйста, введите корректное наименование курса (без цифр).", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
@@ -62,20 +54,18 @@ namespace BeautyArt.Add
             }
 
             // Проверка стоимости курса
-            string patternCost = @"^\d{4} руб$";
             string cost = TextBoxCost.Text.Trim();
-            if (!decimal.TryParse(cost, out decimal costValue) || !Regex.IsMatch(TextBoxCost.Text.Trim(), patternCost))
+            if (string.IsNullOrEmpty(cost) || !decimal.TryParse(cost, out decimal costValue) || costValue <= 0)
             {
                 MessageBox.Show("Пожалуйста, введите корректную стоимость курса (число больше нуля не больше 4 цифр и слово руб).", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             // Проверка продолжительности курса
-            string patternDur = @"^\d{3} акч$";
             string duration = TextBoxDuration.Text.Trim();
-            if (!int.TryParse(duration, out int durationValue) || !Regex.IsMatch(TextBoxDuration.Text.Trim(), patternDur))
+            if (string.IsNullOrEmpty(duration) || duration.Length <= 0 || duration.Length > 3)
             {
-                MessageBox.Show("Пожалуйста, введите корректную продолжительность курса (число больше нуля не больше 3 цифр и слово акч).", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Пожалуйста, введите корректную продолжительность курса (число больше нуля и не больше 3).", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 

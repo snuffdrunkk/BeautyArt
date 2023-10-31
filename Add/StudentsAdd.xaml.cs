@@ -36,7 +36,7 @@ namespace BeautyArt.Add
             db.ReadStudent(dataGrid);
         }
 
-            private bool ValidateInput()
+        private bool ValidateInput()
         {
             // Проверка имени студента
             string name = TextBoxNameStud.Text.Trim();
@@ -87,7 +87,6 @@ namespace BeautyArt.Add
                 MessageBox.Show("Пожалуйста, введите корректные паспортные данные (только 7 цифр).", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
-
 
             return true;
         }

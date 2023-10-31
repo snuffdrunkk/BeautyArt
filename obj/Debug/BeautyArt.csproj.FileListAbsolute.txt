@@ -38,3 +38,17 @@ D:\Практика\Prog\BeautyArt\obj\Debug\Add\TeachersAdd.g.cs
 D:\Практика\Prog\BeautyArt\obj\Debug\Add\TeachersAdd.baml
 D:\Практика\Prog\BeautyArt\obj\Debug\Add\TypeOfCourseAdd.g.cs
 D:\Практика\Prog\BeautyArt\obj\Debug\Add\TypeOfCourseAdd.baml
+D:\Практика\Prog\BeautyArt\obj\Debug\Add\CoursesAdd.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\Add\CoursesAdd.baml
+D:\Практика\Prog\BeautyArt\obj\Debug\Add\SchedulesAdd.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\Add\SchedulesAdd.baml
+D:\Практика\Prog\BeautyArt\obj\Debug\Edit\CoursesEdit.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\Edit\StudentsEdit.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\Edit\CoursesEdit.baml
+D:\Практика\Prog\BeautyArt\obj\Debug\Edit\StudentsEdit.baml
+D:\Практика\Prog\BeautyArt\obj\Debug\Edit\TeachersEdit.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\Edit\TeachersEdit.baml
+D:\Практика\Prog\BeautyArt\obj\Debug\Edit\TypeOfCourseEdit.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\Edit\TypeOfCourseEdit.baml
+D:\Практика\Prog\BeautyArt\obj\Debug\Edit\SchedulesEdit.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\Edit\SchedulesEdit.baml

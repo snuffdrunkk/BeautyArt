@@ -69,7 +69,7 @@
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0, 0, 0, 83" Height="34" />
 
                 <Button
-                    Content="Добавить"
+                    Content="Редактировать"
                     x:Name="AddButton"
                     Background="#877495"
                     BorderBrush="#877495"

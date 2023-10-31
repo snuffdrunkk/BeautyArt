@@ -76,6 +76,5 @@ namespace BeautyArt.Add
 
             return true;
         }
-
     }
 }
