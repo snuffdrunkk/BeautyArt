@@ -13,7 +13,7 @@ namespace BeautyArt.Add
             InitializeComponent();
             db = new DataBase();
             this.dataGrid = dataGrid;
-            db.ReadCoursesToComboBox(ComboBoxTitle);
+            db.ReadTypeOfCourseToComboBox(ComboBoxTitle);
             db.ReadTeachersToComboBox(ComboBoxTeach);
         }
 
@@ -42,7 +42,7 @@ namespace BeautyArt.Add
         {
             // Проверка наименования
             string title = ComboBoxTitle.Text.Trim();
-            if (string.IsNullOrEmpty(title) || title.Length > 15 || !Regex.IsMatch(title, @"^[A-Za-zА-Яа-я]+$"))
+            if (string.IsNullOrEmpty(title) || !Regex.IsMatch(title, @"^([A-Za-zА-Яа-я]| )+$"))
             {
                 MessageBox.Show("Пожалуйста, выберите наименование курса.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;

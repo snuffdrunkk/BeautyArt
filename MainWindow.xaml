@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeautyArt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Учет слушателей курса" Height="450" Width="800"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -138,7 +138,6 @@
             materialDesign:HintAssist.Hint="Поиск учеников"
             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
             Margin="440,35,21,0" 
-            Height="35" 
             Visibility="Hidden"
             TextChanged="SearchStudentsBox_TextChanged"/>
 
@@ -192,8 +191,6 @@
             IsReadOnly="True"
             AutoGenerateColumns="false"
             Margin="20,75,20,20"
-            Width="750"
-            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdStudent" Binding="{Binding IdStudent}" Visibility="Hidden"/>
@@ -218,8 +215,6 @@
             AutoGenerateColumns="false"
             IsReadOnly="True"
             Margin="20,75,20,20"
-            Width="750"
-            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdTeacher" Binding="{Binding IdTeacher}" Visibility="Hidden"/>
@@ -244,8 +239,6 @@
             AutoGenerateColumns="false"
             IsReadOnly="True"
             Margin="20,75,20,20"
-            Width="750"
-            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdTypeOfCourse" Binding="{Binding IdTypeOfCourse}" Visibility="Hidden"/>
@@ -270,8 +263,6 @@
             AutoGenerateColumns="false"
             IsReadOnly="True"
             Margin="20,75,20,20"
-            Width="750"
-            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdCourse" Binding="{Binding IdCourse}" Visibility="Hidden"/>
@@ -295,14 +286,12 @@
             AutoGenerateColumns="false"
             IsReadOnly="True"
             Margin="20,75,20,20"
-            Width="750"
-            Height="335"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdSchedule" Binding="{Binding IdSchedule}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Наименование" Width="*" Binding="{Binding TitleCourse}"/>
-                <DataGridTextColumn Header="Учитель" Width="*" Binding="{Binding SurnameTeach}"/>
                 <DataGridTextColumn Header="Тип занятия" Width="*" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Ученик" Width="*" Binding="{Binding SurnameStud}"/>
                 <DataGridTextColumn Header="Дата" Width="*" Binding="{Binding Date, StringFormat=dd.MM.yyyy}"/>
                 <DataGridTextColumn Header="Время" Width="*" Binding="{Binding Time}"/>
                 <DataGridTextColumn Header="Кабинет" Width="*" Binding="{Binding Cabinet}"/>
@@ -329,6 +318,8 @@
                 <DataGridTextColumn Header="IdCourseComposition" Binding="{Binding IdCourseComposition}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Студент" Width="*" Binding="{Binding SurnameStud}"/>
                 <DataGridTextColumn Header="Наименование курса" Width="*" Binding="{Binding TitleCourse}"/>
+                <DataGridTextColumn Header="В курсе" Width="*" Binding="{Binding Activity}"/>
+                <DataGridTextColumn Header="Причина ухода" Width="*" Binding="{Binding Reason}"/>
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
                 <ContextMenu>

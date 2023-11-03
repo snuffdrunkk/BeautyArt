@@ -67,8 +67,9 @@ namespace BeautyArt.Add
             }
 
             // Проверка номера преподавателя
-            string patternNum = @"^\+\d{12}$";
-            if (!Regex.IsMatch(TextBoxNumberTeach.Text.Trim(), patternNum))
+            string patternNum = @"^(\+375|80)(44|29|25|33)\d{7}$";
+            string phoneNumber = TextBoxNumberTeach.Text.Trim();
+            if (!Regex.IsMatch(phoneNumber, patternNum))
             {
                 MessageBox.Show("Пожалуйста, введите корректный номер преподавателя (только 12 цифр).", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;

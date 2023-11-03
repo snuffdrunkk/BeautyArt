@@ -8,13 +8,14 @@ namespace BeautyArt.Add
     {
         DataBase db;
         DataGrid dataGrid;
+
         public SchedulesAdd(DataGrid dataGrid)
         {
             InitializeComponent();
             db = new DataBase();
             this.dataGrid = dataGrid;
             db.ReadCoursesToComboBox(ComboBoxTitle);
-            db.ReadTeachersToComboBox(ComboBoxTeach);
+            db.ReadStudentsToComboBox(ComboBoxStudent);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -22,12 +23,13 @@ namespace BeautyArt.Add
             if (ValidateInput())
             {
                 ComboBoxDTO dtoTitle = (ComboBoxDTO)ComboBoxTitle.SelectedItem;
-                ComboBoxDTO dtoTeacher = (ComboBoxDTO)ComboBoxTeach.SelectedItem;
+                ComboBoxDTO dtoStud = (ComboBoxDTO)ComboBoxStudent.SelectedItem;
+                string stud = dtoStud != null ? dtoStud.id.ToString() : "null";
 
                 DateTime selectedDateDateStart = DatePickerDate.SelectedDate.Value;
                 string formattedDateDateStart = selectedDateDateStart.ToString("yyyy-MM-dd");
 
-                db.Update($"Insert INTO Schedules (IdCourse, IdTeacher, Type, Date, Time, Cabinet) VALUES ('{dtoTitle.id}', '{dtoTeacher.id}', N'{ComboBoxType.Text}', '{formattedDateDateStart}', N'{TimePickerTime.Text}', N'{ComboBoxCabinet.Text}')");
+                db.Update($"Insert INTO Schedules (IdCourse, Type, IdStudent, Date, Time, Cabinet) VALUES ('{dtoTitle.id}', N'{ComboBoxType.Text}', {stud}, '{formattedDateDateStart}', N'{TimePickerTime.Text}', N'{ComboBoxCabinet.Text}')");
                 db.ReadSchedule(dataGrid);
             }
         }
@@ -44,14 +46,6 @@ namespace BeautyArt.Add
             if (string.IsNullOrEmpty(title))
             {
                 MessageBox.Show("Пожалуйста, выберите наименование занятия.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
-            }
-
-            // Проверка фамилии учителя
-            string teacherSurname = ComboBoxTeach.Text.Trim();
-            if (string.IsNullOrEmpty(teacherSurname))
-            {
-                MessageBox.Show("Пожалуйста, выберите фамилию учителя.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
@@ -79,5 +73,18 @@ namespace BeautyArt.Add
             return true;
         }
 
+        private void ComboBoxType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBoxType.SelectedIndex == 0)
+            {
+                ComboBoxStudent.IsEnabled = true;
+            }
+            else 
+            { 
+                ComboBoxStudent.IsEnabled = false;
+                ComboBoxStudent.SelectedIndex = -1;
+
+            }
+        }
     }
 }

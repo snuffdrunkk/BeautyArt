@@ -37,19 +37,20 @@
                 </ComboBox>
 
                 <ComboBox
-                    x:Name="ComboBoxTeach"
-                    materialDesign:HintAssist.Hint="Преподаватель"
-                    Margin="0, 0, 0, 6"
-                    VerticalAlignment="Top">
-                </ComboBox>
-
-                <ComboBox
                     x:Name="ComboBoxType"
                     materialDesign:HintAssist.Hint="Тип занятия"
                     Margin="0, 0, 0, 7"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top" SelectionChanged="ComboBoxType_SelectionChanged">
                     <ComboBoxItem Content="Одиночное"/>
                     <ComboBoxItem Content="Групповое"/>
+                </ComboBox>
+
+                <ComboBox
+                    x:Name="ComboBoxStudent"
+                    IsEnabled="False"
+                    materialDesign:HintAssist.Hint="Студент"
+                    Margin="0, 0, 0, 7"
+                    VerticalAlignment="Top">
                 </ComboBox>
 
                 <DatePicker

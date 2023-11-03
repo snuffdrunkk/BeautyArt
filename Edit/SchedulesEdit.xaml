@@ -31,16 +31,7 @@
 
                 <ComboBox
                     x:Name="ComboBoxTitle"
-                    IsEnabled="False"
                     materialDesign:HintAssist.Hint="Наименование курса"
-                    Margin="0, 0, 0, 6"
-                    VerticalAlignment="Top">
-                </ComboBox>
-
-                <ComboBox
-                    x:Name="ComboBoxTeach"
-                    IsEnabled="False"
-                    materialDesign:HintAssist.Hint="Преподаватель"
                     Margin="0, 0, 0, 6"
                     VerticalAlignment="Top">
                 </ComboBox>
@@ -52,6 +43,14 @@
                     VerticalAlignment="Top">
                     <ComboBoxItem Content="Одиночное"/>
                     <ComboBoxItem Content="Групповое"/>
+                </ComboBox>
+
+                <ComboBox
+                    x:Name="ComboBoxStudent"
+                    IsEnabled="False"
+                    materialDesign:HintAssist.Hint="Студент"
+                    Margin="0, 0, 0, 7"
+                    VerticalAlignment="Top" SelectionChanged="ComboBoxStudent_SelectionChanged">
                 </ComboBox>
 
                 <DatePicker

@@ -88,9 +88,9 @@ namespace BeautyArt.Edit
             }
 
             // Проверка номера телефона
-            string patternNum = @"^\+\d{12}$";
+            string patternNum = @"^(\+375|80)(44|29|25|33)\d{7}$";
             string phoneNumber = TextBoxNumberStud.Text.Trim();
-            if (string.IsNullOrEmpty(phoneNumber) || Regex.IsMatch(TextBoxNumberStud.Text, patternNum))
+            if ( !Regex.IsMatch(phoneNumber, patternNum))
             {
                 MessageBox.Show("Пожалуйста, введите корректный номер телефона (только 12 цифр).", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
@@ -99,7 +99,7 @@ namespace BeautyArt.Edit
             // Проверка паспортных данных
             string patternPass = @"^HB\d{7}$";
             string passport = TextBoxPassport.Text.Trim();
-            if (!Regex.IsMatch(TextBoxPassport.Text, patternPass))
+            if (!Regex.IsMatch(passport, patternPass))
             {
                 MessageBox.Show("Пожалуйста, введите корректные паспортные данные (только 7 цифр).", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;

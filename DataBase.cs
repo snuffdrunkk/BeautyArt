@@ -8,11 +8,16 @@ namespace BeautyArt
 {
     internal class DataBase
     {
-        static string con = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BeautyArt;Integrated Security=True;Connect Timeout=30;";
+        private static string con = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BeautyArt;Integrated Security=True;Connect Timeout=30;";
         SqlConnection sqlConnection = new SqlConnection(con);
 
-        private string selectTypeOfCourse = $"select IdTypeOfCourse, TitleCourse from TypeOfCourse";
+        private string selectCourse = $"select Courses.IdCourse, concat(TitleCourse,' ',DateStart,' ', " +
+            "SurnameTeach) as aa  from Courses inner join TypeOfCourse on TypeOfCourse.IdTypeOfCourse=Courses.IdTypeOfCourse" +
+            " inner join Teachers on Teachers.IdTeacher=Courses.IdTeacher";
+        
         private string selectTeachers = $"select IdTeacher, SurnameTeach from Teachers";
+        private string selectStudent = $"select IdStudent, SurnameStud from Students";
+        private string selectTypeOfCourse = $"select IdTypeOfCourse, TitleCourse from TypeOfCourse";
 
         public void Open()
         {
@@ -67,10 +72,15 @@ namespace BeautyArt
 
         public void ReadSchedule(DataGrid dataGrid)
         {
-            Select("select Schedules.IdSchedule, TypeOfCourse.TitleCourse, Teachers.SurnameTeach, Schedules.Type, Schedules.Date, Schedules.Time, Schedules.Cabinet From Schedules, Courses, Teachers, TypeOfCourse Where Schedules.IdCourse = Courses.IdCourse And Schedules.IdTeacher = Teachers.IdTeacher And TypeOfCourse.IdTypeOfCourse = Courses.IdTypeOfCourse", dataGrid);
+            Select("select Schedules.IdSchedule, Type, Students.SurnameStud, Date, Time, Cabinet from Students, Courses, Schedules where Schedules.IdCourse = Courses.IdCourse And Schedules.IdStudent = Students.IdStudent", dataGrid);
         }
 
         public void ReadCoursesToComboBox(ComboBox box)
+        {
+            ComboBoxToTable(selectCourse, box);
+        }
+
+        public void ReadTypeOfCourseToComboBox(ComboBox box)
         {
             ComboBoxToTable(selectTypeOfCourse, box);
         }
@@ -78,6 +88,11 @@ namespace BeautyArt
         public void ReadTeachersToComboBox(ComboBox box)
         {
             ComboBoxToTable(selectTeachers, box);
+        }
+
+        public void ReadStudentsToComboBox(ComboBox box)
+        {
+            ComboBoxToTable(selectStudent, box);
         }
 
         public void ComboBoxToTable(string query, ComboBox box)
