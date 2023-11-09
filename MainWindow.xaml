@@ -259,33 +259,10 @@
 
         <DataGrid 
             Background="White"
-            x:Name="CoursesGrid"
-            AutoGenerateColumns="false"
-            IsReadOnly="True"
-            Margin="20,75,20,20"
-            Visibility="Hidden">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="IdCourse" Binding="{Binding IdCourse}" Visibility="Hidden"/>
-                <DataGridTextColumn Header="Наименование" Width="*" Binding="{Binding TitleCourse}"/>
-                <DataGridTextColumn Header="Учитель" Width="*" Binding="{Binding SurnameTeach}"/>
-                <DataGridTextColumn Header="Дата начала" Width="*" Binding="{Binding DateStart, StringFormat=dd.MM.yyyy}"/>
-                <DataGridTextColumn Header="Количество учеников" Width="*" Binding="{Binding CountStud}"/>
-            </DataGrid.Columns>
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem x:Name="DeleteCourses" Header="Удалить" Height="25" Click="DeleteCourses_Click"/>
-                    <MenuItem x:Name="EditCourses" Header="Редактировать" Height="25" Click="EditCourses_Click"/>
-                    <MenuItem x:Name="ReturnCourses" Header="Отменить" Height="25" Click="ReturnCourses_Click"/>
-                </ContextMenu>
-            </DataGrid.ContextMenu>
-        </DataGrid>
-
-        <DataGrid 
-            Background="White"
             x:Name="ScheduleGrid"
             AutoGenerateColumns="false"
             IsReadOnly="True"
-            Margin="20,75,20,20"
+            Margin="20,75,20,120"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdSchedule" Binding="{Binding IdSchedule}" Visibility="Hidden"/>
@@ -307,12 +284,34 @@
 
         <DataGrid 
             Background="White"
-            x:Name="CompositionsGrid"
+            x:Name="CoursesGrid"
             AutoGenerateColumns="false"
             IsReadOnly="True"
             Margin="20,75,20,20"
-            Width="750"
-            Height="335"
+            Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="IdCourse" Binding="{Binding IdCourse}" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Наименование" Width="*" Binding="{Binding TitleCourse}"/>
+                <DataGridTextColumn Header="Учитель" Width="*" Binding="{Binding SurnameTeach}"/>
+                <DataGridTextColumn Header="Дата начала" Width="*" Binding="{Binding DateStart, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Количество учеников" Width="*" Binding="{Binding CountStud}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="ShowComposition" Header="Посмотреть состав" Height="25" Click="ShowComposition_Click"/>
+                    <MenuItem x:Name="DeleteCourses" Header="Удалить" Height="25" Click="DeleteCourses_Click"/>
+                    <MenuItem x:Name="EditCourses" Header="Редактировать" Height="25" Click="EditCourses_Click"/>
+                    <MenuItem x:Name="ReturnCourses" Header="Отменить" Height="25" Click="ReturnCourses_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <DataGrid 
+            Background="White"
+            x:Name="CompositionsGrid"
+            AutoGenerateColumns="false"
+            IsReadOnly="True"
+            Margin="20,20, 20,20"
             Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdCourseComposition" Binding="{Binding IdCourseComposition}" Visibility="Hidden"/>
@@ -321,12 +320,6 @@
                 <DataGridTextColumn Header="В курсе" Width="*" Binding="{Binding Activity}"/>
                 <DataGridTextColumn Header="Причина ухода" Width="*" Binding="{Binding Reason}"/>
             </DataGrid.Columns>
-            <DataGrid.ContextMenu>
-                <ContextMenu>
-                    <MenuItem x:Name="DeleteCompositions" Header="Удалить" Height="25" Click="DeleteCompositions_Click"/>
-                    <MenuItem x:Name="EditCompositions" Header="Редактировать" Height="25" />
-                </ContextMenu>
-            </DataGrid.ContextMenu>
         </DataGrid>
     </Grid>
 </Window>

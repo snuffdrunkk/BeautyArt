@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 using BeautyArt.Edit;
+using BeautyArt.Composition;
 
 namespace BeautyArt
 {
@@ -194,6 +195,13 @@ namespace BeautyArt
             ScheduleGridUpdate();
         }
 
+        private void ShowComposition_Click(object sender, RoutedEventArgs e)//Добавление состава
+        {
+            CompositionShow compShow = new CompositionShow(CompositionsGrid);
+            compShow.ShowDialog();
+            CompositionsGridUpdate();
+        }
+
         private void DeleteStudents_Click(object sender, RoutedEventArgs e)//Удаление ученика
         {
             try
@@ -271,23 +279,6 @@ namespace BeautyArt
                 {
                     db.Update($"DELETE FROM Schedules Where IdSchedule = {selectedRow.Row.ItemArray[0]}");
                     ScheduleGridUpdate();
-                }
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("Данные из строки используются в другой таблице! Удалите данные из другой таблицы.", "Ошибка при удалении");
-            }
-        }
-
-        private void DeleteCompositions_Click(object sender, RoutedEventArgs e)//Удаление состава
-        {
-            try
-            {
-                var selectedRow = CompositionsGrid.SelectedItem as DataRowView;
-                if (selectedRow != null)
-                {
-                    db.Update($"DELETE FROM Compositions Where IdCourseComposition = {selectedRow.Row.ItemArray[0]}");
-                    CompositionsGridUpdate();
                 }
             }
             catch (SqlException)

@@ -72,7 +72,7 @@ namespace BeautyArt
 
         public void ReadSchedule(DataGrid dataGrid)
         {
-            Select("select Schedules.IdSchedule, Type, Students.SurnameStud, Date, Time, Cabinet from Students, Courses, Schedules where Schedules.IdCourse = Courses.IdCourse And Schedules.IdStudent = Students.IdStudent", dataGrid);
+            Select("select Schedules.IdSchedule, TypeOfCourse.TitleCourse, Schedules.Type, Students.SurnameStud, Schedules.Date, Schedules.Time, Cabinet from Schedules left join Students on Schedules.IdStudent = Students.IdStudent left join Courses on Schedules.IdCourse = Courses.IdCourse left join TypeOfCourse on Courses.IdTypeOfCOurse = TypeOfCourse.IdTypeOfCourse left join Teachers on Courses.IdTeacher = Teachers.IdTeacher ", dataGrid);
         }
 
         public void ReadCoursesToComboBox(ComboBox box)

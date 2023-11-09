@@ -79,6 +79,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Add\CompositionAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Add\CoursesAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +100,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Add\TypeOfCourseAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Composition\CompositionShow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,6 +131,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Add\CompositionAdd.xaml.cs">
+      <DependentUpon>CompositionAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Add\CoursesAdd.xaml.cs">
       <DependentUpon>CoursesAdd.xaml</DependentUpon>
     </Compile>
@@ -143,6 +154,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ComboBoxDTO.cs" />
+    <Compile Include="Composition\CompositionShow.xaml.cs">
+      <DependentUpon>CompositionShow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataBase.cs" />
     <Compile Include="Edit\CoursesEdit.xaml.cs">
       <DependentUpon>CoursesEdit.xaml</DependentUpon>

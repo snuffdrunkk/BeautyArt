@@ -30,10 +30,13 @@ namespace BeautyArt.Edit
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            string formattedDateDateStart = DatePickerDate.SelectedDate.Value.ToString("yyyy-MM-dd");
+            if (ValidateInput())
+            {
+                string formattedDateDateStart = DatePickerDate.SelectedDate.Value.ToString("yyyy-MM-dd");
 
-            db.Update($"UPDATE Schedules SET Type = N'{ComboBoxType.Text}', Date = '{formattedDateDateStart}', Time = N'{TimePickerTime.Text}', Cabinet = N'{ComboBoxCabinet.Text}' WHERE IdSchedule = '{ID}'");
-            db.ReadSchedule(dataGrid);
+                db.Update($"UPDATE Schedules SET Date = '{formattedDateDateStart}', Time = N'{TimePickerTime.Text}', Cabinet = N'{ComboBoxCabinet.Text}' WHERE IdSchedule = '{ID}'");
+                db.ReadSchedule(dataGrid);
+            }
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -43,20 +46,6 @@ namespace BeautyArt.Edit
 
         private bool ValidateInput()
         {
-            // Проверка наименования
-            string title = ComboBoxTitle.Text.Trim();
-            if (string.IsNullOrEmpty(title))
-            {
-                MessageBox.Show("Пожалуйста, выберите наименование занятия.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
-            }
-
-            // Проверка типа занятия
-            if (ComboBoxType.SelectedItem == null)
-            {
-                MessageBox.Show("Пожалуйста, выберите тип занятия.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
-            }
 
             // Проверка времени
             if (TimePickerTime.SelectedTime == null)
@@ -77,7 +66,7 @@ namespace BeautyArt.Edit
 
         private void ComboBoxStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBoxType.SelectedIndex == 0)
+/*            if (ComboBoxType.SelectedIndex == 0)
             {
                 ComboBoxStudent.IsEnabled = true;
             }
@@ -86,7 +75,7 @@ namespace BeautyArt.Edit
                 ComboBoxStudent.IsEnabled = false;
                 ComboBoxStudent.SelectedIndex = -1;
 
-            }
+            }*/
         }
     }
 }

@@ -52,3 +52,7 @@ D:\Практика\Prog\BeautyArt\obj\Debug\Edit\TypeOfCourseEdit.g.cs
 D:\Практика\Prog\BeautyArt\obj\Debug\Edit\TypeOfCourseEdit.baml
 D:\Практика\Prog\BeautyArt\obj\Debug\Edit\SchedulesEdit.g.cs
 D:\Практика\Prog\BeautyArt\obj\Debug\Edit\SchedulesEdit.baml
+D:\Практика\Prog\BeautyArt\obj\Debug\Add\CompositionAdd.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\Composition\CompositionShow.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\Add\CompositionAdd.baml
+D:\Практика\Prog\BeautyArt\obj\Debug\Composition\CompositionShow.baml
