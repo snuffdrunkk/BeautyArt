@@ -1,4 +1,5 @@
 ﻿using BeautyArt.Add;
+using BeautyArt.Service;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
@@ -11,16 +12,19 @@ namespace BeautyArt.Composition
     {
         DataBase db;
         DataGrid dataGrid;
+
+        OutputService outputService;
+
+        private string compositionPath = "D:\\Практика\\Prog\\BeautyArt\\Resources\\CompExcel.xlsx";
+
+        public int curs;
         public CompositionShow(DataGrid dataGrid)
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            
+            db = new DataBase();
+            outputService = new OutputService();
         }
-
-        private void CompositionsGridUpdate()//Обновление грида расписание
-        {
-            //db.Select("select Compositions.IdCourseComposition, Students.IdStudnet, Students.IdStudent, Teachers.IdTeacher, Schedules.Type, Schedules.Date, Schedules.Time, Schedules.Cabinet From Schedules, Courses, Teachers, Students Where Schedules.IdCourse = Courses.IdCourse And Schedules.IdStudent = Students.IdStudent And Schedules.IdTeacher = Teachers.IdTeacher", ScheduleGrid);
-        }
-
         private void DeleteCompositions_Click(object sender, RoutedEventArgs e)//Удаление состава
         {
             try
@@ -29,7 +33,7 @@ namespace BeautyArt.Composition
                 if (selectedRow != null)
                 {
                     db.Update($"DELETE FROM Compositions Where IdCourseComposition = {selectedRow.Row.ItemArray[0]}");
-                    CompositionsGridUpdate();
+                    db.CompositionsGridRead(curs, CompositionsGrid);
                 }
             }
             catch (SqlException)
@@ -42,7 +46,23 @@ namespace BeautyArt.Composition
         {
             CompositionAdd compAdd = new CompositionAdd(CompositionsGrid);
             compAdd.ShowDialog();
-            CompositionsGridUpdate();
+            db.CompositionsGridRead(curs, CompositionsGrid);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            db.CompositionsGridRead(curs, CompositionsGrid);
+
+        }
+
+        private void ExitCompositions_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CompExcel_Click(object sender, RoutedEventArgs e)
+        {
+            outputService.ExportScheduleToExcel(CompositionsGrid, compositionPath, "Состав", false);
         }
     }
 }

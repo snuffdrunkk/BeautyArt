@@ -14,6 +14,10 @@ using System.IO;
 using System.Linq;
 using DataGrid = System.Windows.Controls.DataGrid;
 using OfficeOpenXml;
+using BeautyArt.Service;
+using BeautyArt.FilterData;
+using System.Web.UI.WebControls;
+using DataGridColumn = System.Windows.Controls.DataGridColumn;
 
 namespace BeautyArt
 {
@@ -22,11 +26,15 @@ namespace BeautyArt
         DataBase db;
 
         private string schedulePath = "D:\\Практика\\Prog\\BeautyArt\\Resources\\ScheduleExcel.xlsx";
+        private string coursesPath = "D:\\Практика\\Prog\\BeautyArt\\Resources\\CoursesExcel.xlsx";
+        private OutputService outputService;
 
         public MainWindow()
         {
             InitializeComponent();
+            
             db = new DataBase();
+            outputService = new OutputService();
         }
 
         private void StudentsGridUpdate()//Обновление грида учеников
@@ -52,11 +60,6 @@ namespace BeautyArt
         private void ScheduleGridUpdate()//Обновление грида расписание
         {
             db.ReadSchedule(ScheduleGrid);
-        }
-
-        private void CompositionsGridUpdate()//Обновление грида расписание
-        {
-            //db.Select("select Compositions.IdCourseComposition, Students.IdStudnet, Students.IdStudent, Teachers.IdTeacher, Schedules.Type, Schedules.Date, Schedules.Time, Schedules.Cabinet From Schedules, Courses, Teachers, Students Where Schedules.IdCourse = Courses.IdCourse And Schedules.IdStudent = Students.IdStudent And Schedules.IdTeacher = Teachers.IdTeacher", ScheduleGrid);
         }
 
         private void StudnetsShow_Click(object sender, RoutedEventArgs e)//Вывод студентов
@@ -206,8 +209,9 @@ namespace BeautyArt
         private void ShowComposition_Click(object sender, RoutedEventArgs e)//Добавление состава
         {
             CompositionShow compShow = new CompositionShow(CompositionsGrid);
+            compShow.curs = Convert.ToInt32((CoursesGrid.SelectedItem as DataRowView).Row.ItemArray[0].ToString());
             compShow.ShowDialog();
-            CompositionsGridUpdate();
+
         }
 
         private void DeleteStudents_Click(object sender, RoutedEventArgs e)//Удаление ученика
@@ -686,78 +690,21 @@ namespace BeautyArt
             }
         }
 
-        private void ExcelSchedule_Click(object sender, RoutedEventArgs e)
+        private void ExcelSchedule_Click(object sender, RoutedEventArgs e)//Печать расписания
         {
-            ExportDataTableToExcel(ScheduleGrid, schedulePath, "Расписание");
+            outputService.ExportScheduleToExcel(ScheduleGrid, schedulePath, "Расписание", true);
         }
 
-        public void ExportDataTableToExcel(DataTable dataTable, string filePath, string title)
+
+        private void ExcelCourse_Click(object sender, RoutedEventArgs e)//Печать курса
         {
-            using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(filePath)))
-            {
-                if (excelPackage.Workbook.Worksheets.Any(x => x.Name.Equals("Карточка")))
-                {
-                    excelPackage.Workbook.Worksheets.Delete("Карточка");
-                }
+            outputService.ExportScheduleToExcel(CoursesGrid, coursesPath, "Курсы", false);
+        }
 
-                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Карточка");
-                worksheet.PrinterSettings.Orientation = eOrientation.Landscape;
-
-                worksheet.Cells["A1:D1"].Merge = true;
-                worksheet.Cells["A1:D1"].Value = title;
-                worksheet.Cells["A1:D1"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-                worksheet.Cells["A2:D2"].Merge = true;
-                worksheet.Cells["A2:D2"].Value = "ОАО Гомельский Мясокомбинат";
-                worksheet.Cells["A2:D2"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
-                worksheet.Cells["A3:D3"].Merge = true;
-                worksheet.Cells["A3:D3"].Value = $"Продукт: {dataTable.Rows[0]["Название"].ToString()}";
-                worksheet.Cells["A3:D3"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
-                worksheet.Cells["A4:D4"].Merge = true;
-                worksheet.Cells["A4:D4"].Value = "Главный склад";
-                worksheet.Cells["A4:D4"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
-                worksheet.Cells["A5:D5"].Merge = true;
-                worksheet.Cells["A5:D5"].Value = "Адрес: Гомель, ул. Ильича, 2";
-                worksheet.Cells["A5:D5"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
-                worksheet.Cells["A6:D6"].Merge = true;
-
-                for (int i = 0; i < dataTable.Columns.Count; i++)
-                {
-                    worksheet.Cells[7, i + 1].Value = dataTable.Columns[i].ColumnName;
-                    worksheet.Column(i + 1).Width = 20;
-                }
-
-                int lastRow = 8;
-
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    for (int col = 0; col < dataTable.Columns.Count; col++)
-                    {
-                        var cellValue = row.ItemArray[col]?.ToString();
-                        worksheet.Cells[lastRow, col + 1].Value = cellValue;
-                    }
-
-                    lastRow++;
-                }
-
-                var tableRange = worksheet.Cells[7, 1, lastRow - 1, dataTable.Columns.Count];
-                var border = tableRange.Style.Border;
-                border.Left.Style = border.Right.Style = border.Top.Style = border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
-
-                lastRow++;
-                worksheet.Cells[lastRow, 1].Value = "Составил: _______________";
-
-                try
-                {
-                    excelPackage.Save();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Для открытия отчёта закройте Excel!");
-                    return;
-                }
-            }
-
-            Process.Start(filePath);
+        private void ExcelDateSchedule_Click(object sender, RoutedEventArgs e)//Печать расп по дате
+        {
+            ExcelDataShedule excelDataShow = new ExcelDataShedule();
+            excelDataShow.ShowDialog();
         }
     }
 }

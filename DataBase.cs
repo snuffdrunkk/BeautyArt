@@ -74,6 +74,12 @@ namespace BeautyArt
         {
             Select("select Schedules.IdSchedule, TypeOfCourse.TitleCourse, Schedules.Type, Students.SurnameStud, Schedules.Date, Schedules.Time, Cabinet from Schedules left join Students on Schedules.IdStudent = Students.IdStudent left join Courses on Schedules.IdCourse = Courses.IdCourse left join TypeOfCourse on Courses.IdTypeOfCOurse = TypeOfCourse.IdTypeOfCourse left join Teachers on Courses.IdTeacher = Teachers.IdTeacher ", dataGrid);
         }
+        public void CompositionsGridRead(int curs, DataGrid CompositionsGrid)//Обновление грида расписание
+        {
+            Select("select IdCourseComposition, SurnameStud+' '+NameStud as NStud , NumberStud, Activity, Reason From  Students " +
+                " inner join Compositions on Compositions.IdStudnet=Students.IdStudent" +
+                $" Where Compositions.IdCourse = {curs}", CompositionsGrid);
+        }
 
         public void ReadCoursesToComboBox(ComboBox box)
         {
@@ -111,52 +117,6 @@ namespace BeautyArt
             }
             reader.Close();
             Open();
-        }
-
-        public DataTable Select(string query)
-        {
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-
-            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
-
-            DataTable data = new DataTable();
-            adapter.Fill(data);
-
-            return data;
-        }
-
-        public DataTable GetOrderComposition(string productName)
-        {
-            string query = $@"SELECT product.title, order_composition.quantity, ord.order_type
-                FROM order_composition, ord, product
-                where ord.order_id = order_composition.order_id
-                and order_composition.product_id = product.product_id
-                and product.title = N'{productName}'";
-
-            DataTable result = Select(query);
-            DataTable newTable = new DataTable();
-
-            newTable.Columns.Add("Название", typeof(string));
-            newTable.Columns.Add("Приход", typeof(int));
-            newTable.Columns.Add("Расход", typeof(int));
-            newTable.Columns.Add("Остаток", typeof(int));
-
-            foreach (DataRow row in result.Rows)
-            {
-                string title = row["title"].ToString();
-                int quantity = int.Parse(row["quantity"].ToString());
-                string orderType = row["order_type"].ToString();
-
-                DataRow newRow = newTable.NewRow();
-
-                newRow["Название"] = title;
-                newRow["Приход"] = orderType == "Поступление" ? quantity : 0;
-                newRow["Расход"] = orderType == "Выбытие" ? quantity : 0;
-
-                newTable.Rows.Add(newRow);
-            }
-
-            return newTable;
         }
     }
 }

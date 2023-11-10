@@ -47,8 +47,8 @@
                     x:Name="ComboBoxEnable"
                     materialDesign:HintAssist.Hint="Находится в курсе сейчас?"
                     Margin="0, 0, 0, 7"
-                    VerticalAlignment="Top" SelectionChanged="ComboBoxType_SelectionChanged">
-                    <ComboBoxItem Content="Да"/>
+                    VerticalAlignment="Top" SelectionChanged="ComboBoxEnable_SelectionChanged">
+                    <ComboBoxItem Content = "Да" />
                     <ComboBoxItem Content="Нет"/>
                 </ComboBox>
 

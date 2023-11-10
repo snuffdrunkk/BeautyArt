@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BeautyArt.Add
 {
-    /// <summary>
-    /// Логика взаимодействия для CompositionAdd.xaml
-    /// </summary>
     public partial class CompositionAdd : Window
     {
         DataBase db;
@@ -46,7 +32,6 @@ namespace BeautyArt.Add
             {
                 ComboBoxReason.IsEnabled = false;
                 ComboBoxReason.SelectedIndex = -1;
-
             }
         }
     }

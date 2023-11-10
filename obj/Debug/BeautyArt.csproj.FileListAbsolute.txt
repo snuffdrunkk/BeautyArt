@@ -56,3 +56,11 @@ D:\Практика\Prog\BeautyArt\obj\Debug\Add\CompositionAdd.g.cs
 D:\Практика\Prog\BeautyArt\obj\Debug\Composition\CompositionShow.g.cs
 D:\Практика\Prog\BeautyArt\obj\Debug\Add\CompositionAdd.baml
 D:\Практика\Prog\BeautyArt\obj\Debug\Composition\CompositionShow.baml
+D:\Практика\Prog\BeautyArt\bin\Debug\EPPlus.dll
+D:\Практика\Prog\BeautyArt\bin\Debug\EPPlus.Interfaces.dll
+D:\Практика\Prog\BeautyArt\bin\Debug\EPPlus.System.Drawing.dll
+D:\Практика\Prog\BeautyArt\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Практика\Prog\BeautyArt\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Практика\Prog\BeautyArt\bin\Debug\EPPlus.xml
+D:\Практика\Prog\BeautyArt\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\Практика\Prog\BeautyArt\obj\Debug\FilterData\ExcelDataShedule.g.cs

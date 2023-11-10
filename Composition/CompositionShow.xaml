@@ -12,6 +12,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
+        Loaded="Window_Loaded"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -24,12 +25,12 @@
             x:Name="CompositionsGrid"
             AutoGenerateColumns="false"
             IsReadOnly="True"
-            Margin="20,20, 20,20"
-            Visibility="Visible">
+            Margin="20,20,20,20"
+            Visibility="Visible" Grid.ColumnSpan="6">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IdCourseComposition" Binding="{Binding IdCourseComposition}" Visibility="Hidden"/>
-                <DataGridTextColumn Header="Студент" Width="*" Binding="{Binding SurnameStud}"/>
-                <DataGridTextColumn Header="Наименование курса" Width="*" Binding="{Binding TitleCourse}"/>
+                <DataGridTextColumn Header="Студент" Width="*" Binding="{Binding NStud}"/>
+                <DataGridTextColumn Header="Номер телефона" Width="*" Binding="{Binding NumberStud}"/>
                 <DataGridTextColumn Header="В курсе" Width="*" Binding="{Binding Activity}"/>
                 <DataGridTextColumn Header="Причина ухода" Width="*" Binding="{Binding Reason}"/>
             </DataGrid.Columns>
@@ -37,7 +38,9 @@
                 <ContextMenu>
                     <MenuItem x:Name="AddCompositions" Header="Добавить" Height="25" Click="AddCompositions_Click"/>
                     <MenuItem x:Name="DeleteCompositions" Header="Удалить" Height="25" Click="DeleteCompositions_Click"/>
+                    <MenuItem x:Name="CompExcel" Header="Печать Excel" Height="25" Click="CompExcel_Click"/>
                     <MenuItem x:Name="EditCompositions" Header="Редактировать" Height="25" />
+                    <MenuItem x:Name="ExitCompositions" Header="Закрыть" Height="25" Click="ExitCompositions_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

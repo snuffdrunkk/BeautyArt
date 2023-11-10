@@ -1,0 +1,77 @@
+﻿<Window x:Class="BeautyArt.FilterData.ExcelDataShedule"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeautyArt.FilterData"
+        mc:Ignorable="d"
+        Title="" Height="160" Width="400"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Loaded="Window_Loaded"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#EEE8AA" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <StackPanel>
+            <TextBlock
+                HorizontalAlignment="Center"
+                Margin="0, 10, 0, 0"
+                TextAlignment="Center"
+                Text="Выберите диапазон даты"
+                Foreground="#3f3f3f"
+                FontSize="22" 
+                Height="36"/>
+            <StackPanel
+                Orientation="Horizontal">
+                <DatePicker
+                    x:Name="DatePickerDateStart"
+                    Margin="10,0,0,0"
+                    Width="170"
+                    materialDesign:HintAssist.Hint="Дата"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+
+                <DatePicker
+                    x:Name="DatePickerDateEnd"
+                    Margin="40,0,0,0"
+                    Width="170"
+                    materialDesign:HintAssist.Hint="Дата"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+            </StackPanel>
+            <StackPanel
+                Margin="0 10 0 0"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="CloseButton"
+                    Click="CloseButton_Click"
+                    Background="#877495"
+                    Content="Закрыть"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                    Cursor="Hand" 
+                    BorderBrush="White" 
+                    Width="130"
+                    Margin="30,0,78,0"/>
+                <Button
+                    x:Name="ExcelButton"
+                    Click="ExcelButton_Click"
+                    Background="#877495"
+                    Content="Печать"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                    Cursor="Hand" 
+                    BorderBrush="White" 
+                    Width="130"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
