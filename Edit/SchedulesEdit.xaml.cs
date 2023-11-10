@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BeautyArt.Edit
@@ -58,6 +59,23 @@ namespace BeautyArt.Edit
             if (ComboBoxCabinet.SelectedItem == null)
             {
                 MessageBox.Show("Пожалуйста, выберите кабинет.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+
+            try
+            {
+                DateTime date = DatePickerDate.SelectedDate.Value;
+
+                if (date < date.AddDays(-1))
+                {
+                    MessageBox.Show("Пожалуйста, выберите верную дату.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Введите дату!");
                 return false;
             }
 

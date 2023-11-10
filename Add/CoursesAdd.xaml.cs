@@ -22,14 +22,14 @@ namespace BeautyArt.Add
 
             if (ValidateInput())
             {
-            DateTime selectedDateDateStart = DatePickerDateStart.SelectedDate.Value;
-            string formattedDateDateStart = selectedDateDateStart.ToString("yyyy-MM-dd");
+                DateTime selectedDateDateStart = DatePickerDateStart.SelectedDate.Value;
+                string formattedDateDateStart = selectedDateDateStart.ToString("yyyy-MM-dd");
 
-            ComboBoxDTO dtoTitle = (ComboBoxDTO)ComboBoxTitle.SelectedItem;
-            ComboBoxDTO dtoTeacher = (ComboBoxDTO)ComboBoxTeach.SelectedItem;
+                ComboBoxDTO dtoTitle = (ComboBoxDTO)ComboBoxTitle.SelectedItem;
+                ComboBoxDTO dtoTeacher = (ComboBoxDTO)ComboBoxTeach.SelectedItem;
 
-            db.Update($"Insert INTO Courses (IdTypeOfCourse, IdTeacher, DateStart, CountStud) VALUES ('{dtoTitle.id}', '{dtoTeacher.id}', '{formattedDateDateStart}', N'{TextBoxCount.Text}')");
-            db.ReadCourse(dataGrid);
+                db.Update($"Insert INTO Courses (IdTypeOfCourse, IdTeacher, DateStart, CountStud) VALUES ('{dtoTitle.id}', '{dtoTeacher.id}', '{formattedDateDateStart}', N'{TextBoxCount.Text}')");
+                db.ReadCourse(dataGrid);
             }
         }
 
@@ -55,6 +55,22 @@ namespace BeautyArt.Add
                 MessageBox.Show("Пожалуйста, выберите учителя.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
+            
+            try
+            {
+                DateTime date = DatePickerDateStart.SelectedDate.Value;
+
+                if (date < date.AddDays(-1))
+                {
+                    MessageBox.Show("Пожалуйста, выберите верную дату.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+            } catch (InvalidOperationException)
+            {
+                MessageBox.Show("Введите дату!");
+                return false;
+            }
+           
 
             return true;
         }

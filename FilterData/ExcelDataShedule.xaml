@@ -5,14 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BeautyArt.FilterData"
         mc:Ignorable="d"
-        Title="" Height="160" Width="400"
+        Title="" Height="170" Width="415"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Loaded="Window_Loaded"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">

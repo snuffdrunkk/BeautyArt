@@ -211,7 +211,6 @@ namespace BeautyArt
             CompositionShow compShow = new CompositionShow(CompositionsGrid);
             compShow.curs = Convert.ToInt32((CoursesGrid.SelectedItem as DataRowView).Row.ItemArray[0].ToString());
             compShow.ShowDialog();
-
         }
 
         private void DeleteStudents_Click(object sender, RoutedEventArgs e)//Удаление ученика
@@ -703,7 +702,7 @@ namespace BeautyArt
 
         private void ExcelDateSchedule_Click(object sender, RoutedEventArgs e)//Печать расп по дате
         {
-            ExcelDataShedule excelDataShow = new ExcelDataShedule();
+            ExcelDataShedule excelDataShow = new ExcelDataShedule(ScheduleGrid);
             excelDataShow.ShowDialog();
         }
     }

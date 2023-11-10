@@ -229,6 +229,7 @@
     </None>
     <None Include="Resources\CompExcel.xlsx" />
     <None Include="Resources\CoursesExcel.xlsx" />
+    <None Include="Resources\DateScheduleExcel.xlsx" />
     <None Include="Resources\ScheduleExcel.xlsx" />
   </ItemGroup>
   <ItemGroup>

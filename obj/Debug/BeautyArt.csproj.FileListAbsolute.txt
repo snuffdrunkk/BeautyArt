@@ -64,3 +64,4 @@ D:\Практика\Prog\BeautyArt\bin\Debug\System.ComponentModel.Annotations.d
 D:\Практика\Prog\BeautyArt\bin\Debug\EPPlus.xml
 D:\Практика\Prog\BeautyArt\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
 D:\Практика\Prog\BeautyArt\obj\Debug\FilterData\ExcelDataShedule.g.cs
+D:\Практика\Prog\BeautyArt\obj\Debug\FilterData\ExcelDataShedule.baml
