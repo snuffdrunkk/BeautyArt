@@ -278,6 +278,7 @@
                     <MenuItem x:Name="DeleteSchedule" Header="Удалить" Height="25" Click="DeleteSchedule_Click"/>
                     <MenuItem x:Name="EditSchedule" Header="Редактировать" Height="25" Click="EditSchedule_Click"/>
                     <MenuItem x:Name="ReturnSchedule" Header="Отменить" Height="25" Click="ReturnSchedule_Click"/>
+                    <MenuItem x:Name="ExcelSchedule" Header="Отменить" Height="25" Click="ExcelSchedule_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

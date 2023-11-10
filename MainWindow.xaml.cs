@@ -9,12 +9,20 @@ using System.Collections;
 using System;
 using BeautyArt.Edit;
 using BeautyArt.Composition;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using DataGrid = System.Windows.Controls.DataGrid;
+using OfficeOpenXml;
 
 namespace BeautyArt
 {
     public partial class MainWindow : Window
     {
         DataBase db;
+
+        private string schedulePath = "D:\\Практика\\Prog\\BeautyArt\\Resources\\ScheduleExcel.xlsx";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -676,6 +684,80 @@ namespace BeautyArt
             {
                 MessageBox.Show("Не выбрана строка для редактирования", "Ошибка", MessageBoxButton.OK);
             }
+        }
+
+        private void ExcelSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            ExportDataTableToExcel(ScheduleGrid, schedulePath, "Расписание");
+        }
+
+        public void ExportDataTableToExcel(DataTable dataTable, string filePath, string title)
+        {
+            using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(filePath)))
+            {
+                if (excelPackage.Workbook.Worksheets.Any(x => x.Name.Equals("Карточка")))
+                {
+                    excelPackage.Workbook.Worksheets.Delete("Карточка");
+                }
+
+                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Карточка");
+                worksheet.PrinterSettings.Orientation = eOrientation.Landscape;
+
+                worksheet.Cells["A1:D1"].Merge = true;
+                worksheet.Cells["A1:D1"].Value = title;
+                worksheet.Cells["A1:D1"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet.Cells["A2:D2"].Merge = true;
+                worksheet.Cells["A2:D2"].Value = "ОАО Гомельский Мясокомбинат";
+                worksheet.Cells["A2:D2"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+                worksheet.Cells["A3:D3"].Merge = true;
+                worksheet.Cells["A3:D3"].Value = $"Продукт: {dataTable.Rows[0]["Название"].ToString()}";
+                worksheet.Cells["A3:D3"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+                worksheet.Cells["A4:D4"].Merge = true;
+                worksheet.Cells["A4:D4"].Value = "Главный склад";
+                worksheet.Cells["A4:D4"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+                worksheet.Cells["A5:D5"].Merge = true;
+                worksheet.Cells["A5:D5"].Value = "Адрес: Гомель, ул. Ильича, 2";
+                worksheet.Cells["A5:D5"].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+                worksheet.Cells["A6:D6"].Merge = true;
+
+                for (int i = 0; i < dataTable.Columns.Count; i++)
+                {
+                    worksheet.Cells[7, i + 1].Value = dataTable.Columns[i].ColumnName;
+                    worksheet.Column(i + 1).Width = 20;
+                }
+
+                int lastRow = 8;
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    for (int col = 0; col < dataTable.Columns.Count; col++)
+                    {
+                        var cellValue = row.ItemArray[col]?.ToString();
+                        worksheet.Cells[lastRow, col + 1].Value = cellValue;
+                    }
+
+                    lastRow++;
+                }
+
+                var tableRange = worksheet.Cells[7, 1, lastRow - 1, dataTable.Columns.Count];
+                var border = tableRange.Style.Border;
+                border.Left.Style = border.Right.Style = border.Top.Style = border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+
+                lastRow++;
+                worksheet.Cells[lastRow, 1].Value = "Составил: _______________";
+
+                try
+                {
+                    excelPackage.Save();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Для открытия отчёта закройте Excel!");
+                    return;
+                }
+            }
+
+            Process.Start(filePath);
         }
     }
 }
