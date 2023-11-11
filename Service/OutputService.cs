@@ -75,7 +75,7 @@ namespace BeautyArt.Service
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Для открытия отчёта закройте Excel!");
+                    MessageBox.Show("Для открытия документа закройте Excel!", "Ошибка!");
                     return;
                 }
             }
