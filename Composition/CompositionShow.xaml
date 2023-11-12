@@ -37,9 +37,10 @@
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="AddCompositions" Header="Добавить" Height="25" Click="AddCompositions_Click"/>
+                    <MenuItem x:Name="EditCompositions" Header="Редактировать" Height="25" Click="EditCompositions_Click"/>
                     <MenuItem x:Name="DeleteCompositions" Header="Удалить" Height="25" Click="DeleteCompositions_Click"/>
-                    <MenuItem x:Name="CompExcel" Header="Печать Excel" Height="25" Click="CompExcel_Click"/>
-                    <MenuItem x:Name="EditCompositions" Header="Редактировать" Height="25" />
+                    <MenuItem x:Name="CompExcel" Header="Печать состава Excel" Height="25" Click="CompExcel_Click"/>
+                    <MenuItem x:Name="CompSertExcel" Header="Печать сертификата Excel" Height="25" Click="CompSertExcel_Click"/>
                     <MenuItem x:Name="ExitCompositions" Header="Закрыть" Height="25" Click="ExitCompositions_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>

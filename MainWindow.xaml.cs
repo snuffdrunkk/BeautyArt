@@ -9,15 +9,11 @@ using System.Collections;
 using System;
 using BeautyArt.Edit;
 using BeautyArt.Composition;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using DataGrid = System.Windows.Controls.DataGrid;
-using OfficeOpenXml;
 using BeautyArt.Service;
 using BeautyArt.FilterData;
-using System.Web.UI.WebControls;
 using DataGridColumn = System.Windows.Controls.DataGridColumn;
+using Window = System.Windows.Window;
 
 namespace BeautyArt
 {
@@ -27,6 +23,7 @@ namespace BeautyArt
 
         private string schedulePath = "D:\\Практика\\Prog\\BeautyArt\\Resources\\ScheduleExcel.xlsx";
         private string coursesPath = "D:\\Практика\\Prog\\BeautyArt\\Resources\\CoursesExcel.xlsx";
+        private string studentsPath = "D:\\Практика\\Prog\\BeautyArt\\Resources\\StudentsExcel.xlsx";
         private OutputService outputService;
 
         public MainWindow()
@@ -305,18 +302,14 @@ namespace BeautyArt
         }
         private void SearchAndHighlightRowsStud(string searchText)
         {
-            // Проход по всем строкам DataGrid
             foreach (DataGridRow row in GetDataGridRows(StudentsGrid))
             {
-                // Получение объекта данных, связанного со строкой
                 var rowData = row.Item as DataRowView;
                 if (rowData != null)
                 {
-                    // Проверка содержимого каждой ячейки в строке
                     bool found = false;
                     foreach (DataGridColumn column in StudentsGrid.Columns)
                     {
-                        // Получение значения ячейки по индексу столбца
                         string cellValue = rowData[column.SortMemberPath].ToString();
                         if (searchText == "")
                         {
@@ -324,8 +317,6 @@ namespace BeautyArt
                         }
                         if (cellValue.ToLower().Contains(searchText))
                         {
-                            // Если значение ячейки содержит искомый текст,
-                            // выделяем строку
                             row.Background = Brushes.MediumPurple;
                             found = true;
                             break;
@@ -348,18 +339,14 @@ namespace BeautyArt
 
         private void SearchAndHighlightRowsTeach(string searchText)
         {
-            // Проход по всем строкам DataGrid
             foreach (DataGridRow row in GetDataGridRows(TeachersGrid))
             {
-                // Получение объекта данных, связанного со строкой
                 var rowData = row.Item as DataRowView;
                 if (rowData != null)
                 {
-                    // Проверка содержимого каждой ячейки в строке
                     bool found = false;
                     foreach (DataGridColumn column in TeachersGrid.Columns)
                     {
-                        // Получение значения ячейки по индексу столбца
                         string cellValue = rowData[column.SortMemberPath].ToString();
                         if (searchText == "")
                         {
@@ -367,8 +354,6 @@ namespace BeautyArt
                         }
                         if (cellValue.ToLower().Contains(searchText))
                         {
-                            // Если значение ячейки содержит искомый текст,
-                            // выделяем строку
                             row.Background = Brushes.MediumPurple;
                             found = true;
                             break;
@@ -390,18 +375,14 @@ namespace BeautyArt
         }
         private void SearchAndHighlightRowsType(string searchText)
         {
-            // Проход по всем строкам DataGrid
             foreach (DataGridRow row in GetDataGridRows(TypeOfCoursesGrid))
             {
-                // Получение объекта данных, связанного со строкой
                 var rowData = row.Item as DataRowView;
                 if (rowData != null)
                 {
-                    // Проверка содержимого каждой ячейки в строке
                     bool found = false;
                     foreach (DataGridColumn column in TypeOfCoursesGrid.Columns)
                     {
-                        // Получение значения ячейки по индексу столбца
                         string cellValue = rowData[column.SortMemberPath].ToString();
                         if (searchText == "")
                         {
@@ -409,8 +390,6 @@ namespace BeautyArt
                         }
                         if (cellValue.ToLower().Contains(searchText))
                         {
-                            // Если значение ячейки содержит искомый текст,
-                            // выделяем строку
                             row.Background = Brushes.MediumPurple;
                             found = true;
                             break;
@@ -432,18 +411,14 @@ namespace BeautyArt
         }
         private void SearchAndHighlightRowsCourse(string searchText)
         {
-            // Проход по всем строкам DataGrid
             foreach (DataGridRow row in GetDataGridRows(CoursesGrid))
             {
-                // Получение объекта данных, связанного со строкой
                 var rowData = row.Item as DataRowView;
                 if (rowData != null)
                 {
-                    // Проверка содержимого каждой ячейки в строке
                     bool found = false;
                     foreach (DataGridColumn column in CoursesGrid.Columns)
                     {
-                        // Получение значения ячейки по индексу столбца
                         string cellValue = rowData[column.SortMemberPath].ToString();
                         if (searchText == "")
                         {
@@ -451,8 +426,6 @@ namespace BeautyArt
                         }
                         if (cellValue.ToLower().Contains(searchText))
                         {
-                            // Если значение ячейки содержит искомый текст,
-                            // выделяем строку
                             row.Background = Brushes.MediumPurple;
                             found = true;
                             break;
@@ -474,18 +447,14 @@ namespace BeautyArt
         }
         private void SearchAndHighlightRowsSchedule(string searchText)
         {
-            // Проход по всем строкам DataGrid
             foreach (DataGridRow row in GetDataGridRows(ScheduleGrid))
             {
-                // Получение объекта данных, связанного со строкой
                 var rowData = row.Item as DataRowView;
                 if (rowData != null)
                 {
-                    // Проверка содержимого каждой ячейки в строке
                     bool found = false;
                     foreach (DataGridColumn column in ScheduleGrid.Columns)
                     {
-                        // Получение значения ячейки по индексу столбца
                         string cellValue = rowData[column.SortMemberPath].ToString();
                         if (searchText == "")
                         {
@@ -493,13 +462,11 @@ namespace BeautyArt
                         }
                         if (cellValue.ToLower().Contains(searchText))
                         {
-                            // Если значение ячейки содержит искомый текст,
-                            // выделяем строку
+
                             row.Background = Brushes.MediumPurple;
                             found = true;
                             break;
                         }
-
                     }
                     if (!found)
                     {
@@ -552,18 +519,14 @@ namespace BeautyArt
 
         private void SearchAndHideRows(string searchText, DataGrid datagrid)
         {
-            // Проход по всем строкам DataGrid
             foreach (DataGridRow row in GetDataGridRows(datagrid))
             {
-                // Получение объекта данных, связанного со строкой
                 var rowData = row.Item as DataRowView;
                 if (rowData != null)
                 {
-                    // Проверка содержимого каждой ячейки в строке
                     bool found = false;
                     foreach (DataGridColumn column in datagrid.Columns)
                     {
-                        // Получение значения ячейки по индексу столбца
                         string cellValue = rowData[column.SortMemberPath].ToString();
                         if (searchText == "")
                         {
@@ -572,8 +535,6 @@ namespace BeautyArt
                         }
                         if (cellValue.ToLower().Contains(searchText))
                         {
-                            // Если значение ячейки содержит искомый текст,
-                            // отображаем строку
                             row.Visibility = Visibility.Visible;
                             found = true;
                             break;
@@ -581,8 +542,6 @@ namespace BeautyArt
                     }
                     if (!found)
                     {
-                        // Если ячейки не содержат искомый текст,
-                        // скрываем строку
                         row.Visibility = Visibility.Collapsed;
                     }
                 }
@@ -705,5 +664,22 @@ namespace BeautyArt
             ExcelDataShedule excelDataShow = new ExcelDataShedule(ScheduleGrid);
             excelDataShow.ShowDialog();
         }
+
+        private void ExcelStudents_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var selectedRow = StudentsGrid.SelectedItem as DataRowView;
+                if (selectedRow != null)
+                {
+                    outputService.ExportStudToExcel(StudentsGrid, studentsPath, "Договор", true, selectedRow);
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Выберите строку.", "Ошибка при печати");
+            }
+        }
     }
+
 }

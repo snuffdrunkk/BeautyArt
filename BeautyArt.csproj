@@ -101,6 +101,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Edit\CompositionEdit.xaml.cs">
+      <DependentUpon>CompositionEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FilterData\ExcelDataShedule.xaml.cs">
       <DependentUpon>ExcelDataShedule.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Composition\CompositionShow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit\CompositionEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

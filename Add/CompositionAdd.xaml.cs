@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BeautyArt.Add
@@ -7,9 +8,13 @@ namespace BeautyArt.Add
     {
         DataBase db;
         DataGrid dataGrid;
+        public int curs;
         public CompositionAdd(DataGrid dataGrid)
         {
             InitializeComponent();
+            db=new DataBase();
+            this.dataGrid = dataGrid;
+            db.ReadStudentsToComboBox(ComboBoxStud);
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -20,11 +25,19 @@ namespace BeautyArt.Add
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
 
+            //if (ValidateInput())
+            //{
+            
+
+                db.Update($"Insert INTO Compositions (IdStudnet, IdCourse, Activity) VALUES ({(ComboBoxStud.SelectedValue as ComboBoxDTO).id}, {curs}, N'{ComboBoxEnable.Text}')");
+            db.CompositionsGridRead(curs, dataGrid);
+            //}
+
         }
 
         private void ComboBoxEnable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBoxEnable.SelectedIndex == 0)
+            if (ComboBoxEnable.SelectedIndex == 1)
             {
                 ComboBoxReason.IsEnabled = true;
             }

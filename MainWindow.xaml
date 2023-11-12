@@ -205,6 +205,7 @@
                 <ContextMenu>
                     <MenuItem x:Name="DeleteStudents" Header="Удалить" Click="DeleteStudents_Click"/>
                     <MenuItem x:Name="EditStudents" Header="Редактировать" Click="EditStudents_Click"/>
+                    <MenuItem x:Name="ExcelStudents" Header="Печать Excel" Click="ExcelStudents_Click"/>
                     <MenuItem x:Name="ReturnStudents" Header="Отменить" Click="ReturnStudents_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>

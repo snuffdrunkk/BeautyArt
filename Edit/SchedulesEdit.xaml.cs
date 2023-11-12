@@ -67,7 +67,7 @@ namespace BeautyArt.Edit
             {
                 DateTime date = DatePickerDate.SelectedDate.Value;
 
-                if (date < date.AddDays(-1))
+                if (date < DateTime.Now.AddDays(-1))
                 {
                     MessageBox.Show("Пожалуйста, выберите верную дату.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return false;

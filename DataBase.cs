@@ -1,8 +1,7 @@
-﻿using BeautyArt.Add;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Windows;
 using System.Windows.Controls;
+using DataTable = System.Data.DataTable;
 
 namespace BeautyArt
 {
@@ -67,7 +66,7 @@ namespace BeautyArt
 
         public void ReadCourse(DataGrid dataGrid)
         {
-            Select("select Courses.IdCourse, TypeOfCourse.TitleCourse, Teachers.SurnameTeach,  Courses.DateStart, Courses.CountStud From Courses, Teachers, TypeOfCourse Where Courses.IdTypeOfCourse = TypeOfCourse.IdTypeOfCourse And Courses.IdTeacher = Teachers.IdTeacher", dataGrid);
+            Select("select Courses.IdCourse, TypeOfCourse.TitleCourse, Teachers.SurnameTeach,  Courses.DateStart, count(*) as CountStud From Courses, Teachers, Compositions, TypeOfCourse Where Compositions.IdCourse = Courses.IdCourse and Courses.IdTypeOfCourse = TypeOfCourse.IdTypeOfCourse And Courses.IdTeacher = Teachers.IdTeacher Group by Courses.IdCourse, TypeOfCourse.TitleCourse, Teachers.SurnameTeach, Courses.DateStart", dataGrid);
         }
 
         public void ReadSchedule(DataGrid dataGrid)
@@ -76,7 +75,7 @@ namespace BeautyArt
         }
         public void CompositionsGridRead(int curs, DataGrid CompositionsGrid)//Обновление грида расписание
         {
-            Select("select IdCourseComposition, SurnameStud+' '+NameStud as NStud , NumberStud, Activity, Reason From  Students " +
+            Select("select IdCourseComposition, SurnameStud+' '+NameStud as NStud , NumberStud, Activity, Reason, Students.IdStudent  From  Students " +
                 " inner join Compositions on Compositions.IdStudnet=Students.IdStudent" +
                 $" Where Compositions.IdCourse = {curs}", CompositionsGrid);
         }
