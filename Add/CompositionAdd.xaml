@@ -30,6 +30,7 @@
             <StackPanel>
                 <ComboBox
                     x:Name="ComboBoxStud"
+                    IsEnabled="False"
                     materialDesign:HintAssist.Hint="Фамилия студента"
                     Margin="0, 0, 0, 6"
                     VerticalAlignment="Top">

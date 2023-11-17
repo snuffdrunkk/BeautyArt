@@ -37,6 +37,7 @@ namespace BeautyArt.Composition
                 {
                     db.Update($"DELETE FROM Compositions Where IdCourseComposition = {selectedRow.Row.ItemArray[0]}");
                     db.CompositionsGridRead(curs, CompositionsGrid);
+                    db.ReadCourse(dataGrid);
                 }
             }
             catch (SqlException)
@@ -52,17 +53,19 @@ namespace BeautyArt.Composition
           
             compAdd.ShowDialog();
             db.CompositionsGridRead(curs, CompositionsGrid);
+            db.ReadCourse(dataGrid);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             db.CompositionsGridRead(curs, CompositionsGrid);
-
+            db.ReadCourse(dataGrid);
         }
 
         private void ExitCompositions_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            db.ReadCourse(dataGrid);
         }
 
         private void CompExcel_Click(object sender, RoutedEventArgs e)
@@ -76,8 +79,9 @@ namespace BeautyArt.Composition
             compEdit.sostav = Convert.ToInt32((CompositionsGrid.SelectedItem as DataRowView).Row.ItemArray[0].ToString()); ;
             compEdit.id_stud=Convert.ToInt32((CompositionsGrid.SelectedItem as DataRowView).Row.ItemArray[5].ToString());
             compEdit.curs = curs;
-           compEdit.ShowDialog();
+            compEdit.ShowDialog();
             db.CompositionsGridRead(curs, CompositionsGrid);
+            db.ReadCourse(dataGrid);
         }
 
         private void CompSertExcel_Click(object sender, RoutedEventArgs e)

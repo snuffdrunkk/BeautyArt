@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,7 +13,7 @@ namespace BeautyArt.Add
         public CompositionAdd(DataGrid dataGrid)
         {
             InitializeComponent();
-            db=new DataBase();
+            db = new DataBase();
             this.dataGrid = dataGrid;
             db.ReadStudentsToComboBox(ComboBoxStud);
         }
@@ -25,13 +26,12 @@ namespace BeautyArt.Add
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
 
-            //if (ValidateInput())
-            //{
-            
-
+            if (ValidateInput())
+            {
                 db.Update($"Insert INTO Compositions (IdStudnet, IdCourse, Activity) VALUES ({(ComboBoxStud.SelectedValue as ComboBoxDTO).id}, {curs}, N'{ComboBoxEnable.Text}')");
-            db.CompositionsGridRead(curs, dataGrid);
-            //}
+                db.CompositionsGridRead(curs, dataGrid);
+                db.ReadCourse(dataGrid);
+            }
 
         }
 
@@ -47,5 +47,38 @@ namespace BeautyArt.Add
                 ComboBoxReason.SelectedIndex = -1;
             }
         }
+
+        private bool ValidateInput()
+        {
+
+            // Проверка фамилии студента
+            string studentSurname = ComboBoxStud.Text.Trim();
+            if (string.IsNullOrEmpty(studentSurname))
+            {
+                MessageBox.Show("Пожалуйста, выберите фамилию студента.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            // Проверка нахождения в курсе и причины (если ComboBoxEnable содержит "Нет")
+            string enableStatus = ComboBoxEnable.Text.Trim();
+            if (string.IsNullOrEmpty(enableStatus))
+            {
+                MessageBox.Show("Пожалуйста, выберите статус участия в курсе.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (enableStatus == "Нет")
+            {
+                string reason = ComboBoxReason.Text.Trim();
+                if (string.IsNullOrEmpty(reason))
+                {
+                    MessageBox.Show("Пожалуйста, укажите причину отсутствия в курсе.", "Проверка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
     }
 }

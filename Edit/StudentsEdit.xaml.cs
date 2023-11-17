@@ -41,9 +41,9 @@ namespace BeautyArt.Edit
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ValidateInput())
+            if (ValidateInput()) 
             {
-                db.Update($"Update Students set NameStud = N'{TextBoxNameStud.Text}', SurnameStud =  N'{TextBoxMiddlenameStud.Text}', MiddlenameStud = N'{TextBoxSurnameStud.Text}', EmailStud = N'{TextBoxEmail.Text}', NumberStud = N'{TextBoxNumberStud.Text}', PassportData = N'{TextBoxPassport.Text}' Where IdStudent = N'{ID}'");
+                db.Update($"Update Students set NameStud = N'{TextBoxNameStud.Text}', SurnameStud =  N'{TextBoxSurnameStud.Text}', MiddlenameStud = N'{TextBoxMiddlenameStud.Text}', EmailStud = N'{TextBoxEmail.Text}', NumberStud = N'{TextBoxNumberStud.Text}', PassportData = N'{TextBoxPassport.Text}' Where IdStudent = N'{ID}'");
             }
             db.ReadStudent(dataGrid);
         }
